@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
     <head>
-      <title>Example</title>
+      <title>sserpdroW CMS</title>
       <meta name="viewport" content="width=device-width, initial-scale=1">
 
       <!-- Do not add `link` tags-->
@@ -12,14 +12,44 @@
       <script src="public/application.js" type="text/javascript" charset="utf-8" defer></script>
     </head>
     <body class="container-fluid">
-      <h1>Example</h1>
+      <h1>sserpdroW Content Management System</h1>
+      <div class="message" id='message'></div>
 
-      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
-      eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
-      minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex
-      ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate
-      velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat
-      cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id
-      est laborum.</p>
+      <!-- AUTH FUNCTIONS-->
+        <div class="form-group">
+          <form id="sign-up">
+            <fieldset>
+              <h5>Create An Account:</h5>
+              <input type="text" name="credentials[email]" class="textbox" placeholder="USERNAME">
+              <input type="password" name="credentials[password]" class="textbox" placeholder="PASSWORD">
+              <input type="password" name="credentials[password_confirmation]" class="textbox" placeholder="PASSWORD">
+              <input type="submit" name="submit" value="SIGN UP" class="btn btn-primary btn-s">
+            </fieldset>
+          </form>
+          <br>
+          <form id="sign-in">
+            <fieldset>
+              <h5>Login</h5>
+              <input type="text" name="credentials[email]" class="textbox" placeholder="USERNAME">
+              <input type="password" name="credentials[password]" class="textbox" placeholder="PASSWORD">
+              <input type="submit" name="submit" value="SIGN IN" class="btn btn-primary btn-s">
+            </fieldset>
+          </form>
+          <form id="change-password">
+            <fieldset>
+              <h5>Change your password:</h5>
+              <input type="password" name="passwords[old]" class="password_textbox" placeholder="OLD PW">
+              <input type="password" name="passwords[new]" class="password_textbox" placeholder="NEW PW"><br>
+              <input type="submit" name="submit" value="CHANGE PASSWORD" class="btn btn-primary btn-xs">
+            </fieldset>
+          </form>
+          <br>
+          <form id="sign-out">
+            <fieldset>
+              <input type="submit" name="submit" value="Sign Out" class="btn btn-primary">
+            </fieldset>
+          </form>
+        </div>
+        <!-- END OF AUTH FUNCTIONS -->
     </body>
 </html>
