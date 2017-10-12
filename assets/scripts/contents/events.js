@@ -1,5 +1,6 @@
 const getFormFields = require(`../../../lib/get-form-fields`)
 // const store = require('../store')
+const showContent = require('../templates/content-listing.handlebars')
 const api = require('./api')
 const ui = require('./ui')
 
@@ -13,12 +14,20 @@ const onCreateContent = function (event) {
     .catch(ui.createContentFailure)
 }
 
-const onGetContent = function (event) {
-  const data = getFormFields(this)
-  event.preventDefault()
+const onGetPostContent = function (data) {
+  // const data = getFormFields(this)
+  // console.log(this)
+  // event.preventDefault()
   api.getContent(data)
     .then(ui.getContentSuccess)
-    .catch(ui.getContentFailure)
+    .then(() => {
+      const matchingPosts = data.contents.filter(content => content.type === 'post')
+      const showContentHTML = showContent({ contents: matchingPosts })
+      $('.post-list').append(showContentHTML)
+    })
+    // .catch(ui.getContentFailure)
+    .then(ui.getPostSuccess)
+    .catch(ui.getPostFailure)
 }
 
 // const onUpdateContent = function (event) {
@@ -43,5 +52,5 @@ const addHandlers = function () {
 module.exports = {
   addHandlers,
   onCreateContent,
-  onGetContent
+  onGetPostContent
 }
