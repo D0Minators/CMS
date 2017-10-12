@@ -51,10 +51,18 @@ const getAllContent = function () {
   })
 }
 
+const getOneBlog = function () {
+  return $.ajax({
+    url: config.apiOrigin + '/contents', // + content.user.id,
+    method: 'GET'
+  })
+}
+
 module.exports = {
   createContent,
   getContent,
   updateContent,
   deleteContent,
-  getAllContent
+  getAllContent,
+  getOneBlog
 }
