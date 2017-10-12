@@ -1,13 +1,12 @@
-const store = require('../store')
+// const store = require('../store')
 
 const createContentSuccess = function (data) {
-  store.user = data.user
+  console.log('You have succesfully created content!')
   $('#message').text('You have succesfully created content!')
-  $('#sign-up').hide()
-  $('#sign-in').show()
 }
 
 const createContentFailure = function () {
+  console.log('Error on creating content')
   $('#message').text('Error on creating content')
 }
 

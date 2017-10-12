@@ -3,6 +3,7 @@ const store = require('../store')
 
 const createContent = function (data) {
   console.log('api is loading...')
+  console.log(store.user.token)
   return $.ajax({
     url: config.apiOrigin + '/contents',
     method: 'POST',
