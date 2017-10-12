@@ -13,13 +13,14 @@ const onCreateContent = function (event) {
     .catch(ui.createContentFailure)
 }
 
-// const onGetContent = function (event) {
-//   const data = getFormFields(this)
-//   event.preventDefault()
-//   api.signIn(data)
-//     .then(ui.signInSuccess)
-//     .catch(ui.signInFailure)
-// }
+const onGetContent = function (event) {
+  const data = getFormFields(this)
+  event.preventDefault()
+  api.getContent(data)
+    .then(ui.getContentSuccess)
+    .catch(ui.getContentFailure)
+}
+
 // const onUpdateContent = function (event) {
 //   const data = getFormFields(this)
 //   event.preventDefault()
@@ -41,5 +42,6 @@ const addHandlers = function () {
 
 module.exports = {
   addHandlers,
-  onCreateContent
+  onCreateContent,
+  onGetContent
 }
