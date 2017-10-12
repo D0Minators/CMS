@@ -14,17 +14,31 @@ const createContentFailure = function () {
 const getAllContentSuccess = function (data) {
   $('#message').text('Success on getting all content')
   const showBlogsHtml = showBlogsTemplate({ contents: data.contents })
-    $('.showBlogs').empty()
-    $('.showBlogs').append(showBlogsHtml)
+  $('.showBlogs').empty()
+  $('.showBlogs').append(showBlogsHtml)
 }
 
 const getAllContentFailure = function () {
   $('#message').text('Error on getting all content')
 }
 
+const getOneBlogSuccess = function (data) {
+  const matchingEntries = data.contents.filter(content => content._owner === store.userid)
+  $('#message').text('Success on getting one user\'s blog content')
+  const showBlogsHtml = showBlogsTemplate({ contents: matchingEntries })
+  $('.showBlogs').empty()
+  $('.showBlogs').append(showBlogsHtml)
+}
+
+const getOneBlogFailure = function () {
+  $('#message').text('Failure on getting one user\'s blog content')
+}
+
 module.exports = {
   createContentSuccess,
   createContentFailure,
   getAllContentFailure,
-  getAllContentSuccess
+  getAllContentSuccess,
+  getOneBlogSuccess,
+  getOneBlogFailure
 }
