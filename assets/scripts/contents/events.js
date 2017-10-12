@@ -4,7 +4,6 @@ const api = require('./api')
 const ui = require('./ui')
 
 const onCreateContent = function (event) {
-  console.log('Button For Create Content is Running')
   const data = getFormFields(this)
   console.log(data)
   event.preventDefault()
@@ -35,8 +34,16 @@ const onCreateContent = function (event) {
 //     .catch(ui.signOutFailure)
 // }
 
+const onVisitorView = function (event) {
+  event.preventDefault()
+  api.getAllContent()
+    .then(ui.getAllContentSuccess)
+    .catch(ui.getAllContentFailure)
+}
+
 const addHandlers = function () {
   $('#create-content').on('submit', onCreateContent)
+  $('#getBlogs').on('click', onVisitorView)
 }
 
 module.exports = {
