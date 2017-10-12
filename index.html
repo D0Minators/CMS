@@ -10,6 +10,7 @@
       <!-- Do not add `script` tags-->
       <script src="public/vendor.js" type="text/javascript" charset="utf-8" defer></script>
       <script src="public/application.js" type="text/javascript" charset="utf-8" defer></script>
+      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     </head>
     <body class="container-fluid">
       <h1>sserpdroW Content Management System</h1>
@@ -29,7 +30,7 @@
           <br>
           <form id="sign-in">
             <fieldset>
-              <h5>Login</h5>
+              <h5>Login:</h5>
               <input type="text" name="credentials[email]" class="textbox" placeholder="USERNAME">
               <input type="password" name="credentials[password]" class="textbox" placeholder="PASSWORD">
               <input type="submit" name="submit" value="SIGN IN" class="btn btn-primary btn-s">
@@ -37,19 +38,52 @@
           </form>
           <form id="change-password">
             <fieldset>
-              <h5>Change your password:</h5>
+              <h5>Change Your Password:</h5>
               <input type="password" name="passwords[old]" class="password_textbox" placeholder="OLD PW">
               <input type="password" name="passwords[new]" class="password_textbox" placeholder="NEW PW"><br>
-              <input type="submit" name="submit" value="CHANGE PASSWORD" class="btn btn-primary btn-xs">
+              <input type="submit" name="submit" value="CHANGE PASSWORD" class="btn btn-primary btn-s">
             </fieldset>
           </form>
           <br>
           <form id="sign-out">
             <fieldset>
-              <input type="submit" name="submit" value="Sign Out" class="btn btn-primary">
+              <input type="submit" name="submit" value="Sign Out" class="btn btn-s">
             </fieldset>
           </form>
         </div>
         <!-- END OF AUTH FUNCTIONS -->
+        <!-- Beginning of Create Content Functions -->
+        <div class="Content-Body">
+        <div id="create-blog">
+        <h5>Create Content</h5><br>
+        <form id="create-content">
+        <fieldset>
+        <input type="text" class="textboxclass" name="content[title]" placeholder="title">
+    <!-- <input type="date" class="textboxclass" name="content[date]" placeholder="date"> -->
+        <input type="text" class="textboxclass" name="content[text]" placeholder="text">
+        <input type="text" class="textboxclass" name="content[type]" placeholder="type">
+        <!-- <select name="category" class="textboxclass">
+                <option value="page">New Page</option>
+                <option value="post">New Blog Post</option>
+        </select> -->
+        <br>
+        <input type="submit" name="submit" value="Add Content" class="btn btn-primary">
+        </fieldset>
+        </form>
+        </div>
+        </div>
+        <!-- End Of Create Content FUnctions -->
+        <!-- Footer Wrap -->
+        <div id="footerwrap">
+             <div class="container">
+              <div class="col-lg-4">
+              </div>
+              <div class="col-lg-4">
+              </div>
+              <div class="col-lg-4">
+              </div>
+            </div>
+          </div>
+        <!-- End Of Wrap -->
     </body>
 </html>

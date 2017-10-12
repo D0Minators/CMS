@@ -1,25 +1,28 @@
 const config = require('../config')
 const store = require('../store')
 
-const signUp = function (data) {
+const createContent = function (data) {
+  console.log('api button pressed')
   return $.ajax({
-    url: config.apiOrigin + '/sign-up',
+    url: config.apiOrigin + '/contents',
     method: 'POST',
     data
   })
 }
 
-const signIn = function (data) {
+const getContent = function () {
   return $.ajax({
-    url: config.apiOrigin + '/sign-in',
-    method: 'POST',
-    data
+    url: config.apiOrigin + '/contents',
+    method: 'GET',
+    headers: {
+      Authorization: 'Token token=' + store.user.token
+    }
   })
 }
 
-const changePassword = function (data) {
+const updateContent = function (data) {
   return $.ajax({
-    url: config.apiOrigin + '/change-password/' + store.user.id,
+    url: config.apiOrigin + '/contents/' + store.user.id,
     method: 'PATCH',
     headers: {
       Authorization: 'Token token=' + store.user.token
@@ -27,9 +30,10 @@ const changePassword = function (data) {
     data
   })
 }
-const signOut = function () {
+
+const deleteContent = function () {
   return $.ajax({
-    url: config.apiOrigin + '/sign-out/' + store.user.id,
+    url: config.apiOrigin + '/contents/' + store.user.id,
     method: 'DELETE',
     headers: {
       Authorization: 'Token token=' + store.user.token
@@ -38,8 +42,8 @@ const signOut = function () {
 }
 
 module.exports = {
-  signUp,
-  signIn,
-  changePassword,
-  signOut
+  createContent,
+  getContent,
+  updateContent,
+  deleteContent
 }

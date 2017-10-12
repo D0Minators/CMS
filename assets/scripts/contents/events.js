@@ -1,6 +1,7 @@
 const getFormFields = require(`../../../lib/get-form-fields`)
 // const store = require('../store')
 const api = require('./api')
+<<<<<<< HEAD
 const ui = require('./ui')
 
 const onSignUp = function (event) {
@@ -38,12 +39,54 @@ const addHandlers = function () {
   $('#change-password').on('submit', onChangePassword)
   $('#sign-out').on('submit', onSignOut)
   $('#sign-in').on('submit', onSignIn)
+=======
+// const ui = require('./ui')
+
+const onCreateContent = function (event) {
+  console.log('Button For Create Content')
+  const data = getFormFields(this)
+  console.log(this)
+  event.preventDefault()
+  api.createContent(data)
+    .then(console.log('You Have Created Content'))
+    .catch(console.log('NOPPPPPE!'))
+}
+
+// const onGetContent = function (event) {
+//   const data = getFormFields(this)
+//   event.preventDefault()
+//   api.signIn(data)
+//     .then(ui.signInSuccess)
+//     .catch(ui.signInFailure)
+// }
+// const onUpdateContent = function (event) {
+//   const data = getFormFields(this)
+//   event.preventDefault()
+//   api.changePassword(data)
+//     .then(ui.changePasswordSuccess)
+//     .catch(ui.changePasswordFailure)
+// }
+//
+// const onDeleteContent = function (event) {
+//   event.preventDefault()
+//   api.signOut()
+//     .then(ui.signOutSuccess)
+//     .catch(ui.signOutFailure)
+// }
+
+const addHandlers = function () {
+  $('#create-content').on('submit', onCreateContent)
+>>>>>>> Added Create Content API, Events and Index.js
 }
 
 module.exports = {
   addHandlers,
+<<<<<<< HEAD
   onSignUp,
   onSignIn,
   onChangePassword,
   onSignOut
+=======
+  onCreateContent
+>>>>>>> Added Create Content API, Events and Index.js
 }
