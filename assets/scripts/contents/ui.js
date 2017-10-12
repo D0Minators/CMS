@@ -1,4 +1,4 @@
-// const store = require('../store')
+const store = require('../store')
 const showContent = require('../templates/content-listing.handlebars')
 
 const createContentSuccess = function (data) {
@@ -12,8 +12,10 @@ const createContentFailure = function () {
 }
 
 const getContentSuccess = function (data) {
-  console.log('Content Has Been Retrived')
-  const showContentHTML = showContent({ contents: data.contents })
+  console.log('Your post-list Has Been Retrived')
+  console.log(data)
+  const matchingPosts = data.contents.filter(content => content.type === 'post')
+  const showContentHTML = showContent({ contents: matchingPosts })
   $('.post-list').append(showContentHTML)
 }
 

@@ -24,9 +24,9 @@ const getContent = function () {
   })
 }
 
-const updateContent = function (data) {
+const updateContent = function (data, contentId) {
   return $.ajax({
-    url: config.apiOrigin + '/contents/' + store.user.id,
+    url: config.apiOrigin + '/contents/' + contentId,
     method: 'PATCH',
     headers: {
       Authorization: 'Token token=' + store.user.token
