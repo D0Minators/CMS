@@ -53,7 +53,7 @@ const getAllContent = function () {
 
 const getOneBlog = function () {
   return $.ajax({
-    url: config.apiOrigin + '/contents', // + content.user.id,
+    url: config.apiOrigin + '/contents',
     method: 'GET'
   })
 }
