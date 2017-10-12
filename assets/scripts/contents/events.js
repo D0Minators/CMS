@@ -1,5 +1,5 @@
 const getFormFields = require(`../../../lib/get-form-fields`)
-// const store = require('../store')
+const store = require('../store')
 const api = require('./api')
 const ui = require('./ui')
 
@@ -41,9 +41,17 @@ const onVisitorView = function (event) {
     .catch(ui.getAllContentFailure)
 }
 
+const onViewOneBlog = function (event) {
+  store.userid = getFormFields(this).userid
+  event.preventDefault()
+  api.getOneBlog()
+    .then(ui.getOneBlogSuccess)
+    .catch(ui.getOneBlogFailure)
+}
+
 const addHandlers = function () {
   $('#create-content').on('submit', onCreateContent)
-  $('#getBlogs').on('click', onVisitorView)
+  $('.get-blogs').on('submit', onViewOneBlog)
 }
 
 module.exports = {
