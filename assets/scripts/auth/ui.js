@@ -55,7 +55,7 @@ const signOutSuccess = function (data) {
 }
 
 const signOutFailure = function () {
-  $('#message').text('Error wtih signing out, buddy!')
+  $('#message').text('Error with signing out, buddy!')
     .then($('#change-password').hide())
     .then($('#sign-out').hide())
 }
