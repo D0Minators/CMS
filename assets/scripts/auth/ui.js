@@ -1,9 +1,7 @@
 const store = require('../store')
 
 const signUpSuccess = function (data) {
-  // console.log(data)
   store.user = data.user
-  // console.log('Successfully signed up!')
   $('#message').text('You have succesfully signed up!')
   $('#sign-up').hide()
   $('#sign-in').show()
@@ -34,7 +32,6 @@ const signInFailure = function () {
 }
 
 const changePasswordSuccess = function () {
-  // console.log('Successfully changed password!')
   $('#message').text('You have succesfully changed password!')
   $('#change-password').trigger('reset')
 }
@@ -45,7 +42,6 @@ const changePasswordFailure = function () {
 }
 
 const signOutSuccess = function (data) {
-  // console.log(data)
   $('#message').text('You have succesfully signed out!')
   store.user = null
   $('#sign-up').show()

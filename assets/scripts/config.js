@@ -2,7 +2,8 @@
 
 const config = {
   apiOrigins: {
-    production: 'http://sserpdrow-api.herokuapp.com'
+    production: 'http://sserpdrow-api.herokuapp.com',
+    development: 'http://localhost:4741'
   }
 }
 
