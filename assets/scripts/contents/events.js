@@ -1,11 +1,10 @@
 const getFormFields = require(`../../../lib/get-form-fields`)
-// const store = require('../store')
+const store = require('../store')
 const showContent = require('../templates/content-listing.handlebars')
 const api = require('./api')
 const ui = require('./ui')
 
 const onCreateContent = function (event) {
-  console.log('Button For Create Content is Running')
   const data = getFormFields(this)
   console.log(data)
   event.preventDefault()
@@ -45,8 +44,24 @@ const onGetPostContent = function (data) {
 //     .catch(ui.signOutFailure)
 // }
 
+const onVisitorView = function (event) {
+  event.preventDefault()
+  api.getAllContent()
+    .then(ui.getAllContentSuccess)
+    .catch(ui.getAllContentFailure)
+}
+
+const onViewOneBlog = function (event) {
+  store.userid = getFormFields(this).userid
+  event.preventDefault()
+  api.getOneBlog()
+    .then(ui.getOneBlogSuccess)
+    .catch(ui.getOneBlogFailure)
+}
+
 const addHandlers = function () {
   $('#create-content').on('submit', onCreateContent)
+  $('.get-blogs').on('submit', onViewOneBlog)
 }
 
 module.exports = {

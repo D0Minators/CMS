@@ -45,9 +45,25 @@ const deleteContent = function () {
   })
 }
 
+const getAllContent = function () {
+  return $.ajax({
+    url: config.apiOrigin + '/contents',
+    method: 'GET'
+  })
+}
+
+const getOneBlog = function () {
+  return $.ajax({
+    url: config.apiOrigin + '/contents',
+    method: 'GET'
+  })
+}
+
 module.exports = {
   createContent,
   getContent,
   updateContent,
-  deleteContent
+  deleteContent,
+  getAllContent,
+  getOneBlog
 }

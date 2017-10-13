@@ -1,14 +1,29 @@
 const store = require('../store')
+
+const showBlogsTemplate = require('../templates/blog-listing.handlebars')
+
 const showContent = require('../templates/content-listing.handlebars')
 
 const createContentSuccess = function (data) {
-  console.log('You have succesfully created content!')
+
   $('#message').text('You have succesfully created content!')
 }
 
 const createContentFailure = function () {
   console.log('Error on creating content')
   $('#message').text('Error on creating content')
+}
+
+const getOneBlogSuccess = function (data) {
+  const matchingEntries = data.contents.filter(content => content._owner === store.userid)
+  $('#message').text('Success on getting one user\'s blog content')
+  const showBlogsHtml = showBlogsTemplate({ contents: matchingEntries })
+  $('.showBlogs').empty()
+  $('.showBlogs').append(showBlogsHtml)
+}
+
+const getOneBlogFailure = function () {
+  $('#message').text('Failure on getting one user\'s blog content')
 }
 
 const getContentSuccess = function (data) {
@@ -56,5 +71,9 @@ module.exports = {
   getPagesSuccess,
   getPagesFailure,
   getContentSuccess,
-  getContentFailure
+  getContentFailure,
+  createContentSuccess,
+  createContentFailure,
+  getOneBlogSuccess,
+  getOneBlogFailure
 }
