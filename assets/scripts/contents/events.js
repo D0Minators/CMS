@@ -13,10 +13,8 @@ const onCreateContent = function (event) {
     .catch(ui.createContentFailure)
 }
 
+
 const onGetPostContent = function (data) {
-  // const data = getFormFields(this)
-  // console.log(this)
-  // event.preventDefault()
   api.getContent(data)
     .then(ui.getContentSuccess)
     .then(() => {
@@ -25,9 +23,21 @@ const onGetPostContent = function (data) {
       $('.post-list').append(showContentHTML)
       $('.delete-content').on('click', onDeleteContent)
     })
-    // .catch(ui.getContentFailure)
     .then(ui.getPostSuccess)
     .catch(ui.getPostFailure)
+
+const onGetPostContent = function (event) {
+  console.log('On Get Post Content')
+  api.getContent()
+    .then(ui.getPostsSuccess)
+    .catch(ui.getPostsFailure)
+}
+
+const onGetPageContent = function (event) {
+  console.log('On Get Page Content')
+  api.getContent()
+    .then(ui.getPagesSuccess)
+    .catch(ui.getPagessFailure)
 }
 
 // const onUpdateContent = function (event) {
@@ -43,15 +53,6 @@ const onDeleteContent = function (event) {
   console.log($(this).parent().parent().data('id'))
   const id = $(this).parent().parent().data('id')
   api.deleteContent(id)
-  // $(this).parent().parent().data('id'))
-  // $('#message').text('You have successfully deleted content')
-}
-
-const onVisitorView = function (event) {
-  event.preventDefault()
-  api.getAllContent()
-    .then(ui.getAllContentSuccess)
-    .catch(ui.getAllContentFailure)
 }
 
 const onViewOneBlog = function (event) {
@@ -65,6 +66,8 @@ const onViewOneBlog = function (event) {
 const addHandlers = function () {
   $('#create-content').on('submit', onCreateContent)
   $('.get-blogs').on('submit', onViewOneBlog)
+  $('#view-posts').on('click', onGetPostContent)
+  $('#view-pages').on('click', onGetPageContent)
 }
 
 module.exports = {

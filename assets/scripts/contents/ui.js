@@ -1,12 +1,12 @@
 const store = require('../store')
 
 const showBlogsTemplate = require('../templates/blog-listing.handlebars')
-
 const showContent = require('../templates/content-listing.handlebars')
 
 const createContentSuccess = function (data) {
-
   $('#message').text('You have succesfully created content!')
+  $('.post-list').empty()
+  $('#view-posts').trigger('reset')
 }
 
 const createContentFailure = function () {
@@ -29,7 +29,6 @@ const getOneBlogFailure = function () {
 const getContentSuccess = function (data) {
   console.log('You have succesfully received content!')
   $('#message').text('You have succesfully received content!')
-  // there is a bug with this! This shows up after you sign in. That shouldn't happen!!!
 }
 
 const getContentFailure = function () {
@@ -38,12 +37,11 @@ const getContentFailure = function () {
 }
 
 const getPostsSuccess = function (data) {
-  console.log('Your post-list Has Been Retrived')
-  console.log(data)
-  $('#message').text('You got posts')
-  // const matchingPosts = data.contents.filter(content => content.type === 'post')
-  // const showContentHTML = showContent({ contents: matchingPosts })
-  // $('.post-list').append(showContentHTML)
+  $('#message').text('Here is your list of posts')
+  $('.post-list').empty()
+  const matchingPosts = data.contents.filter(content => content.type === 'post')
+  const showContentHTML = showContent({ contents: matchingPosts })
+  $('.post-list').append(showContentHTML)
 }
 
 const getPostsFailure = function () {
@@ -52,8 +50,8 @@ const getPostsFailure = function () {
 }
 
 const getPagesSuccess = function (data) {
-  console.log('Your post-list Has Been Retrived')
-  console.log(data)
+  $('#message').text('Here is your list of pages')
+  $('.page-list').empty()
   const matchingPages = data.contents.filter(content => content.type === 'page')
   const showContentHTML = showContent({ contents: matchingPages })
   $('.page-list').append(showContentHTML)
@@ -72,8 +70,6 @@ module.exports = {
   getPagesFailure,
   getContentSuccess,
   getContentFailure,
-  createContentSuccess,
-  createContentFailure,
   getOneBlogSuccess,
   getOneBlogFailure
 }
