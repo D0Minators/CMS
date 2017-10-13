@@ -1,4 +1,7 @@
 const store = require('../store')
+const contentApi = require('../contents/api')
+const ui = require('../contents/ui')
+const events = require('../contents/events')
 
 const signUpSuccess = function (data) {
   store.user = data.user
@@ -14,14 +17,15 @@ const signUpFailure = function () {
 }
 
 const signInSuccess = function (data) {
+  store.user = data.user
   $('#message').text('You have succesfully signed in!')
   $('#change-password').show()
   $('#sign-out').show()
   $('#sign-up').hide()
   $('#sign-in').hide()
-  $('#list-body').show()
-  $('#get-movies').show()
-  store.user = data.user
+  contentApi.getContent()
+    .then(events.onGetPostContent)
+    .catch(ui.getPostFailure)
 }
 
 const signInFailure = function () {

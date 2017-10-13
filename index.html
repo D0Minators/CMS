@@ -52,26 +52,70 @@
           </form>
         </div>
         <!-- END OF AUTH FUNCTIONS -->
-        <!-- Beginning of Create Content Functions -->
-        <div class="Content-Body">
-        <div id="create-blog">
+        <!-- TESTING COLLAPSE -->
+<div id="accordion" role="tablist" aria-multiselectable="true">
+  <div class="card">
+    <div class="card-header" role="tab" id="headingOne">
+      <h5 class="mb-0">
+        <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+          Create Content
+        </a>
+      </h5>
+    </div>
+
+    <div id="collapseOne" class="collapse" role="tabpanel" aria-labelledby="headingOne">
+      <div class="card-block">
         <h5>Create Content</h5><br>
         <form id="create-content">
         <fieldset>
         <input type="text" class="textboxclass" name="content[title]" placeholder="title">
-    <input type="date" class="textboxclass" name="content[date]" placeholder="date">
+        <input type="date" class="textboxclass" name="content[date]" placeholder="date">
         <input type="text" class="textboxclass" name="content[text]" placeholder="text">
-        <input type="text" class="textboxclass" name="content[type]" placeholder="type">
-        <!-- <select name="category" class="textboxclass">
-                <option value="page">New Page</option>
-                <option value="post">New Blog Post</option>
-        </select> -->
+        <select name="content[type]" class="textboxclass">
+                <option value="page" name="content[page]">New Page</option>
+                <option value="post" name="content[post]">New Blog Post</option>
+        </select>
         <br>
         <input type="submit" name="submit" value="Add Content" class="btn btn-primary">
         </fieldset>
         </form>
+      </div>
+    </div>
+  </div>
+  <div class="card">
+    <div class="card-header" role="tab" id="headingTwo">
+      <h5 class="mb-0">
+        <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+          View Posts
+        </a>
+      </h5>
+    </div>
+    <div id="collapseTwo" class="collapse" role="tabpanel" aria-labelledby="headingTwo">
+      <div class="card-block">
+        <div class="post-list">
+
         </div>
+      </div>
+    </div>
+  </div>
+  <div class="card">
+    <div class="card-header" role="tab" id="headingThree">
+      <h5 class="mb-0">
+        <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+          View Pages
+        </a>
+      </h5>
+    </div>
+    <div id="collapseThree" class="collapse" role="tabpanel" aria-labelledby="headingThree">
+      <div class="card-block">
+        <div class="page-list">
+
         </div>
+      </div>
+    </div>
+  </div>
+</div>
+        <!-- End Of Collapse -->
         <!-- End Of Create Content FUnctions -->
         <div>
           <div class="Blogs">
@@ -83,6 +127,8 @@
           <div class="showBlogs">
           </div>
       </div>
+        </div> -->
+        <!-- End Of Create Content Functions -->
         <!-- Footer Wrap -->
         <div id="footerwrap">
              <div class="container">
