@@ -35,9 +35,10 @@ const updateContent = function (data, contentId) {
   })
 }
 
-const deleteContent = function () {
+const deleteContent = function (id) {
+  console.log(id)
   return $.ajax({
-    url: config.apiOrigin + '/contents/' + store.user.id,
+    url: config.apiOrigin + '/contents/' + id,
     method: 'DELETE',
     headers: {
       Authorization: 'Token token=' + store.user.token

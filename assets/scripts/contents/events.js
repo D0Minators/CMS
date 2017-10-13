@@ -13,6 +13,19 @@ const onCreateContent = function (event) {
     .catch(ui.createContentFailure)
 }
 
+
+const onGetPostContent = function (data) {
+  api.getContent(data)
+    .then(ui.getContentSuccess)
+    .then(() => {
+      const matchingPosts = data.contents.filter(content => content.type === 'post')
+      const showContentHTML = showContent({ contents: matchingPosts })
+      $('.post-list').append(showContentHTML)
+      $('.delete-content').on('click', onDeleteContent)
+    })
+    .then(ui.getPostSuccess)
+    .catch(ui.getPostFailure)
+
 const onGetPostContent = function (event) {
   console.log('On Get Post Content')
   api.getContent()
@@ -35,12 +48,12 @@ const onGetPageContent = function (event) {
 //     .catch(ui.changePasswordFailure)
 // }
 //
-// const onDeleteContent = function (event) {
-//   event.preventDefault()
-//   api.signOut()
-//     .then(ui.signOutSuccess)
-//     .catch(ui.signOutFailure)
-// }
+const onDeleteContent = function (event) {
+  event.preventDefault()
+  console.log($(this).parent().parent().data('id'))
+  const id = $(this).parent().parent().data('id')
+  api.deleteContent(id)
+}
 
 const onViewOneBlog = function (event) {
   store.userid = getFormFields(this).userid
