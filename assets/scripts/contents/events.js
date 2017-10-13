@@ -12,7 +12,6 @@ const onCreateContent = function (event) {
     .catch(ui.createContentFailure)
 }
 
-
 const onGetPostContent = function (event) {
   api.getContent()
     .then(ui.getPostsSuccess)
