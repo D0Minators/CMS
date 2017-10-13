@@ -23,6 +23,7 @@ const onGetPostContent = function (data) {
       const matchingPosts = data.contents.filter(content => content.type === 'post')
       const showContentHTML = showContent({ contents: matchingPosts })
       $('.post-list').append(showContentHTML)
+      $('.delete-content').on('click', onDeleteContent)
     })
     // .catch(ui.getContentFailure)
     .then(ui.getPostSuccess)
@@ -37,12 +38,14 @@ const onGetPostContent = function (data) {
 //     .catch(ui.changePasswordFailure)
 // }
 //
-// const onDeleteContent = function (event) {
-//   event.preventDefault()
-//   api.signOut()
-//     .then(ui.signOutSuccess)
-//     .catch(ui.signOutFailure)
-// }
+const onDeleteContent = function (event) {
+  event.preventDefault()
+  console.log($(this).parent().parent().data('id'))
+  const id = $(this).parent().parent().data('id')
+  api.deleteContent(id)
+  // $(this).parent().parent().data('id'))
+  // $('#message').text('You have successfully deleted content')
+}
 
 const onVisitorView = function (event) {
   event.preventDefault()
