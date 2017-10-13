@@ -6,7 +6,6 @@ const ui = require('./ui')
 
 const onCreateContent = function (event) {
   const data = getFormFields(this)
-  console.log(data)
   event.preventDefault()
   api.createContent(data)
     .then(ui.createContentSuccess)
@@ -21,20 +20,10 @@ const onGetPostContent = function (event) {
 }
 
 const onGetPageContent = function (event) {
-  console.log('On Get Page Content')
   api.getContent()
     .then(ui.getPagesSuccess)
     .catch(ui.getPagesFailure)
 }
-
-// const onUpdateContent = function (event) {
-//   const data = getFormFields(this)
-//   event.preventDefault()
-//   api.changePassword(data)
-//     .then(ui.changePasswordSuccess)
-//     .catch(ui.changePasswordFailure)
-// }
-//
 
 const onViewOneBlog = function (event) {
   store.userid = getFormFields(this).userid
