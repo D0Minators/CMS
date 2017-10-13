@@ -1,5 +1,5 @@
 const store = require('../store')
-
+const api = require('./api')
 const showBlogsTemplate = require('../templates/blog-listing.handlebars')
 const showContent = require('../templates/content-listing.handlebars')
 
@@ -42,6 +42,14 @@ const getPostsSuccess = function (data) {
   const matchingPosts = data.contents.filter(content => content.type === 'post')
   const showContentHTML = showContent({ contents: matchingPosts })
   $('.post-list').append(showContentHTML)
+  $('.delete-content').on('click', onDeleteContent)
+}
+
+const onDeleteContent = function (event) {
+  event.preventDefault()
+  console.log($(this).parent().parent().data('id'))
+  const id = $(this).parent().parent().data('id')
+  api.deleteContent(id)
 }
 
 const getPostsFailure = function () {
