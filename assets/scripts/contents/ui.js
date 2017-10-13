@@ -10,7 +10,6 @@ const createContentSuccess = function (data) {
 }
 
 const createContentFailure = function () {
-  console.log('Error on creating content')
   $('#message').text('Error on creating content')
 }
 
@@ -27,12 +26,10 @@ const getOneBlogFailure = function () {
 }
 
 const getContentSuccess = function (data) {
-  console.log('You have succesfully received content!')
   $('#message').text('You have succesfully received content!')
 }
 
 const getContentFailure = function () {
-  console.log('Error on creating content')
   $('#message').text('Error on creating content')
 }
 
@@ -42,18 +39,14 @@ const getPostsSuccess = function (data) {
   const matchingPosts = data.contents.filter(content => content.type === 'post')
   const showContentHTML = showContent({ contents: matchingPosts })
   $('.post-list').append(showContentHTML)
-  $('.delete-content').on('click', onDeleteContent)
-}
-
-const onDeleteContent = function (event) {
-  event.preventDefault()
-  console.log($(this).parent().parent().data('id'))
-  const id = $(this).parent().parent().data('id')
-  api.deleteContent(id)
+  $('.delete-content').on('click', function (event) {
+    event.preventDefault()
+    const id = $(this).parent().parent().data('id')
+    api.deleteContent(id)
+  })
 }
 
 const getPostsFailure = function () {
-  console.log('Error getting content')
   $('#message').text(console.error + ' Error on getting posts')
 }
 
@@ -66,7 +59,6 @@ const getPagesSuccess = function (data) {
 }
 
 const getPagesFailure = function () {
-  console.log('Error getting content')
   $('#message').text('Error on getting pages')
 }
 module.exports = {
