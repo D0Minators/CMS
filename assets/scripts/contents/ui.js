@@ -43,6 +43,8 @@ const getPostsSuccess = function (data) {
     event.preventDefault()
     const id = $(this).parent().parent().data('id')
     api.deleteContent(id)
+    .then(deletePostSuccess)
+    .catch(deletePostFail)
   })
 }
 
@@ -56,11 +58,35 @@ const getPagesSuccess = function (data) {
   const matchingPages = data.contents.filter(content => content.type === 'page')
   const showContentHTML = showContent({ contents: matchingPages })
   $('.page-list').append(showContentHTML)
+  $('.delete-content').on('click', function (event) {
+    event.preventDefault()
+    const id = $(this).parent().parent().data('id')
+    api.deleteContent(id)
+    .then(deletePageSuccess)
+    .catch(deletePageFail)
+  })
+}
+
+const deletePostSuccess = function () {
+  $('#message').text('Post deleted')
+}
+
+const deletePostFail = function () {
+  $('#message').text('Error on deleting post')
+}
+
+const deletePageFail = function () {
+  $('#message').text('Error on deleting page')
+}
+
+const deletePageSuccess = function () {
+  $('#message').text('Page deleted')
 }
 
 const getPagesFailure = function () {
   $('#message').text('Error on getting pages')
 }
+
 module.exports = {
   createContentSuccess,
   createContentFailure,
