@@ -87,7 +87,6 @@ const onSaveChanges = function (id, title, date, text, type) {
   api.getContent()
     .then(getPostsSuccess)
     .catch(getPostsFailure)
-    // $('.update-fave').trigger('reset')
 }
 
 const getPostsFailure = function () {
@@ -102,6 +101,7 @@ const getPagesSuccess = function (data) {
   $('.page-list').append(showContentHTML)
   $('.delete-content').on('click', function (event) {
     event.preventDefault()
+    $(this).parent().parent().remove()
     const id = $(this).parent().parent().data('id')
     api.deleteContent(id)
       .then(deletePageSuccess)
