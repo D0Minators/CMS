@@ -47,10 +47,10 @@ const getPostsSuccess = function (data) {
       .then(deletePostSuccess)
       .catch(deletePostFailure)
   })
-  $('.edit-content').on('click', onEditPost)
+  $('.edit-content').on('click', onEditContent)
 }
 
-const onEditPost = function (event) {
+const onEditContent = function (event) {
   event.preventDefault()
   const id = $(this).parent().parent().data('id')
   const title = $(this).parent().siblings()[0]
@@ -102,6 +102,7 @@ const getPagesSuccess = function (data) {
       .then(deletePageSuccess)
       .catch(deletePageFailure)
   })
+  $('.edit-content').on('click', onEditContent)
 }
 
 const deletePostSuccess = function () {
