@@ -4,7 +4,7 @@ const signUpSuccess = function (data) {
   store.user = data.user
   $('#message').text('You have succesfully signed up!')
   $('#sign-up').hide()
-  $('#blurb').hide()
+  // $('#blurb').hide()
   $('#sign-in').show()
   $('#accordion').show()
   $('#blogcontent').show()
@@ -21,7 +21,7 @@ const signInSuccess = function (data) {
   $('#sign-out').show()
   $('#accordion').show()
   $('#blogcontent').show()
-  $('#blurb').hide()
+  // $('#blurb').hide()
   $('#sign-up').hide()
   $('#sign-in').hide()
 }
@@ -50,10 +50,10 @@ const signOutSuccess = function (data) {
   $('#change-password').hide()
   $('#sign-out').hide()
   $('#accordion').hide()
-  $('#blogcontent').hide()
+  // $('#blogcontent').hide()
   $('#sign-in').trigger('reset')
   $('#sign-up').trigger('reset')
-  $('#blurb').show()
+  // $('#blurb').show()
 }
 
 const signOutFailure = function () {
