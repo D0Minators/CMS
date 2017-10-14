@@ -4,9 +4,10 @@ const signUpSuccess = function (data) {
   store.user = data.user
   $('#message').text('You have succesfully signed up!')
   $('#sign-up').hide()
+  $('#blurb').hide()
   $('#sign-in').show()
-  $('#list-body').hide()
-  $('#get-movies').hide()
+  $('#accordion').show()
+  $('#blogcontent').show()
 }
 
 const signUpFailure = function () {
@@ -18,6 +19,9 @@ const signInSuccess = function (data) {
   $('#message').text('You have succesfully signed in!')
   $('#change-password').show()
   $('#sign-out').show()
+  $('#accordion').show()
+  $('#blogcontent').show()
+  $('#blurb').hide()
   $('#sign-up').hide()
   $('#sign-in').hide()
 }
@@ -26,7 +30,6 @@ const signInFailure = function () {
   $('#message').text('Error with your login, buddy!')
     .then($('#change-password').hide())
     .then($('#sign-out').hide())
-    .then($('#list-body').hide())
 }
 
 const changePasswordSuccess = function () {
@@ -44,12 +47,13 @@ const signOutSuccess = function (data) {
   store.user = null
   $('#sign-up').show()
   $('#sign-in').show()
-  $('#list-body').hide()
   $('#change-password').hide()
   $('#sign-out').hide()
+  $('#accordion').hide()
+  $('#blogcontent').hide()
   $('#sign-in').trigger('reset')
   $('#sign-up').trigger('reset')
-  $('#list').empty()
+  $('#blurb').show()
 }
 
 const signOutFailure = function () {

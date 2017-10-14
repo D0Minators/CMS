@@ -31,11 +31,11 @@ const getContentSuccess = function (data) {
 }
 
 const getContentFailure = function () {
-  $('#message').text('Error on creating content')
+  $('#message').text('Error on creating content!')
 }
 
 const getPostsSuccess = function (data) {
-  $('#message').text('Here is your list of posts')
+  $('#message').text('Here Is Your List Of Posts:')
   $('.post-list').empty()
   const matchingPosts = data.contents.filter(content => content.type === 'post')
   const showContentHTML = showContent({ contents: matchingPosts })
@@ -78,7 +78,7 @@ const getPostsFailure = function () {
 }
 
 const getPagesSuccess = function (data) {
-  $('#message').text('Here is your list of pages')
+  $('#message').text('Here Is Your List Of Pages:')
   $('.page-list').empty()
   const matchingPages = data.contents.filter(content => content.type === 'page')
   const showContentHTML = showContent({ contents: matchingPages })

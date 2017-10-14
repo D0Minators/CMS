@@ -3,4 +3,131 @@ $icon-font-path: '~bootstrap-sass/assets/fonts/bootstrap/';
 
 body{
   text-align: center;
+  font-family: 'Vollkorn', serif;
+  background-color: black;
+ margin: auto;
+  background-image: url(https://media.giphy.com/media/LEQ1IEMumhwmk/giphy.gif);
+  // background-image: url(https://media.giphy.com/media/3oEdvcbU0yVPFRBQAM/giphy-downsized-large.gif);
+  height: 100%;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+h1{
+  font-family: 'Alegreya Sans SC', sans-serif;
+  font-size: 80px;
+  color: white;
+}
+h2 {
+  font-family: 'Alegreya Sans SC', sans-serif;
+  color: white;
+  font-size: 35px;
+}
+
+p{
+  font-size: 20px;
+  font-family: 'Vollkorn', serif;
+  color: white;
+}
+
+h5{
+  color: rgb(39, 43, 43);
+  font-size: 25px !important;
+  font-family: 'Vollkorn', serif !important;
+}
+
+#message{
+  font-size: 20px;
+  font-family: 'Vollkorn', serif;
+  color: #1c77b9;
+    font-weight: 700;
+}
+.about-us{
+  margin-top: 50px;
+     margin-right: 50px;
+     position:absolute;
+     top:0;
+     right:0;
+}
+
+#sign-out{
+  margin-top: 50px;
+  margin-right: 150px;
+  position:absolute;
+  top:0;
+  right:0;
+}
+
+#change-password{
+  margin-top: 50px;
+  margin-right: 150px;
+  position:absolute;
+  top:0;
+  left:10;
+  display: none;
+}
+
+.password_textbox{
+  height: 20px;
+  width: 150px;
+  text-align: center;
+  font-size: 9px;
+}
+
+ .textboxclass{
+   height: 50px;
+   width: 250px;
+   text-align: center;
+   font-size: 12px;
+   color: rgb(39, 43, 43);
+  font-family: 'Vollkorn', serif;
+ }
+ .textboxclass2{
+   height: 50px;
+   width: 130px;
+   text-align: center;
+   font-size: 12px;
+   color: rgb(39, 43, 43);
+  font-family: 'Vollkorn', serif;
+ }
+
+ .textboxclass3{
+   height: 100px;
+   width: 385px;
+   text-align: center;
+   font-size: 12px;
+   color: rgb(39, 43, 43);
+  font-family: 'Vollkorn', serif;
+ }
+
+#collapseTwo{
+  font-size: 12px;
+ font-family: 'Vollkorn', serif;
+}
+.post-list{
+  overflow: auto
+}
+
+#accordion{
+  display: none;
+  font-family: 'Alegreya Sans SC', sans-serif;
+  color: white;
+  font-size: 35px;
+}
+#blogcontent{
+  display: none;
+}
+
+.textbox{
+  text-align: center;
+}
+#footerwrap{
+  text-align: center;
+  font-size: 12px;
+  color: white;
+}
+li{
+list-style-type: none;
+font-size: 18px;
+text-align: center;
 }
