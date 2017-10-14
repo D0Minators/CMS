@@ -48,10 +48,10 @@ const getPostsSuccess = function (data) {
       .then(deletePostSuccess)
       .catch(deletePostFailure)
   })
-  $('.edit-content').on('click', onEditContent)
+  $('.edit-content').on('click', onEditPost)
 }
 
-const onEditContent = function (event) {
+const onEditPost = function (event) {
   event.preventDefault()
   const id = $(this).parent().parent().data('id')
   const title = $(this).parent().siblings()[0]
@@ -63,11 +63,11 @@ const onEditContent = function (event) {
   $(title).css('background-color', 'rgb(39, 43, 43)')
   $(text).css('background-color', 'rgb(39,43,43)')
   $('.save-content').on('click', function () {
-    onSaveChanges(id, title, date, text, type)
+    onSavePost(id, title, date, text, type)
   })
 }
 
-const onSaveChanges = function (id, title, date, text, type) {
+const onSavePost = function (id, title, date, text, type) {
   const newTitle = $(title).html()
   const newText = $(text).html()
   const newDate = $(date).html().trim()
@@ -107,7 +107,45 @@ const getPagesSuccess = function (data) {
       .then(deletePageSuccess)
       .catch(deletePageFailure)
   })
-  $('.edit-content').on('click', onEditContent)
+  $('.edit-content').on('click', onEditPage)
+}
+
+const onEditPage = function (event) {
+  event.preventDefault()
+  const id = $(this).parent().parent().data('id')
+  const title = $(this).parent().siblings()[0]
+  const date = $(this).parent().siblings()[1]
+  const text = $(this).parent().siblings()[2]
+  const type = $(this).parent().siblings()[3]
+  title.contentEditable = true
+  text.contentEditable = true
+  $(title).css('background-color', 'rgb(39, 43, 43)')
+  $(text).css('background-color', 'rgb(39,43,43)')
+  $('.save-content').on('click', function () {
+    onSavePage(id, title, date, text, type)
+  })
+}
+
+const onSavePage = function (id, title, date, text, type) {
+  const newTitle = $(title).html()
+  const newText = $(text).html()
+  const newDate = $(date).html().trim()
+  const newType = $(type).html()
+  const data =
+{
+  content: {
+    title: newTitle,
+    date: newDate,
+    text: newText,
+    type: newType
+  }
+}
+  api.updateContent(data, id)
+    .then(updatePageSuccess)
+    .catch(updatePageFailure)
+  api.getContent()
+    .then(getPagesSuccess)
+    .catch(getPagesFailure)
 }
 
 const deletePostSuccess = function () {
@@ -140,6 +178,15 @@ const updatePostFailure = function () {
   $('#message').text('Error on updating post')
 }
 
+const updatePageSuccess = function () {
+  console.log('YEAH BUDDY')
+  $('#message').text('Post updated')
+}
+
+const updatePageFailure = function () {
+  console.log('try again')
+  $('#message').text('Error on updating post')
+}
 module.exports = {
   createContentSuccess,
   createContentFailure,
