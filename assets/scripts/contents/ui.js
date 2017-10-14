@@ -2,6 +2,7 @@ const store = require('../store')
 const api = require('./api')
 const showBlogsTemplate = require('../templates/blog-listing.handlebars')
 const showContent = require('../templates/content-listing.handlebars')
+const getFormFields = require(`../../../lib/get-form-fields`)
 
 const createContentSuccess = function (data) {
   $('#message').text('You have succesfully created content!')
@@ -43,10 +44,34 @@ const getPostsSuccess = function (data) {
     event.preventDefault()
     const id = $(this).parent().parent().data('id')
     api.deleteContent(id)
-    .then(deletePostSuccess)
-    .catch(deletePostFail)
+      .then(deletePostSuccess)
+      .catch(deletePostFailure)
   })
+  $('.edit-content').on('click', function (event) {
+  })
+    .on('click', onEditPost)
 }
+
+const onEditPost = function (event) {
+  event.preventDefault()
+  const id = $(this).parent().parent().data('id')
+  console.log(id)
+  const title = $(this).parent().siblings()[0]
+  console.log(title)
+  const date = $(this).parent().siblings()[1]
+  console.log(date)
+  const text = $(this).parent().siblings()[2]
+  console.log(text)
+  const type = $(this).parent().siblings()[3]
+  console.log(type)
+}
+//
+// const onSaveChanges = function (event) {
+//
+//   api.updateContent(data, id)
+//     .then(updatePostSuccess)
+//     .catch(updatePostFailure)
+// }
 
 const getPostsFailure = function () {
   $('#message').text(console.error + ' Error on getting posts')
@@ -62,8 +87,8 @@ const getPagesSuccess = function (data) {
     event.preventDefault()
     const id = $(this).parent().parent().data('id')
     api.deleteContent(id)
-    .then(deletePageSuccess)
-    .catch(deletePageFail)
+      .then(deletePageSuccess)
+      .catch(deletePageFailure)
   })
 }
 
@@ -71,11 +96,11 @@ const deletePostSuccess = function () {
   $('#message').text('Post deleted')
 }
 
-const deletePostFail = function () {
+const deletePostFailure = function () {
   $('#message').text('Error on deleting post')
 }
 
-const deletePageFail = function () {
+const deletePageFailure = function () {
   $('#message').text('Error on deleting page')
 }
 
@@ -87,15 +112,28 @@ const getPagesFailure = function () {
   $('#message').text('Error on getting pages')
 }
 
+const updatePostSuccess = function () {
+  $('#message').text('Post updated')
+}
+
+const updatePostFailure = function () {
+  $('#message').text('Error on updating post')
+}
+
 module.exports = {
   createContentSuccess,
   createContentFailure,
   getPostsSuccess,
   getPostsFailure,
   getPagesSuccess,
+  // onSaveChanges,
   getPagesFailure,
   getContentSuccess,
   getContentFailure,
   getOneBlogSuccess,
-  getOneBlogFailure
+  getOneBlogFailure,
+  updatePostSuccess,
+  updatePostFailure,
+  deletePageFailure,
+  deletePostFailure
 }

@@ -2,18 +2,13 @@
 <!-- for PAGE list -->
 {{#if content.editable}}
   <ul data-id="{{content.id}}">
-    <li> <strong>Title:<br></strong> {{content.title}} <br><strong>Date:<br></strong> {{content.date}} <br> <strong>Text:<br></strong> {{content.text}}<br><strong>Type: </strong> {{content.type}}</li>
+    <li> <strong>Title:<br></strong> {{content.title}}</li>
+    <li><strong>Date:<br></strong> {{content.date}} </li>
+    <li><strong>Text:<br></strong> {{content.text}}</li>
+    <li><strong>Type: </strong> {{content.type}}</li>
     <li><button class="btn btn-info btn-sm delete-content">Delete Content</button></li>
-     <li><button class= "edit-content-button btn btn-info btn-sm">Edit Content</button></li>
-     <form class="edit-content form-inline" id="edit-content-{{content.id}}">
-     <fieldset>
-                   <input type="text" name="content[title]" class="form-control" value="{{content.title}}">
-                   <input type="text" name="content[date]" class="form-control" value="{{content.date}}">
-                   <input type="text" name="content[text]" class="form-control" value="{{content.text}}">
-                   <input type="text" name="content[type]" class="form-control" value={{content.type}}>
-                   <input type="submit" name="submit" class="btn btn-primary btn-sm" value="save" id="save">
-    </fieldset>
-    </form>
+    <li><button class= "edit-content btn btn-info btn-sm">Edit Content</button></li>
+    <li><button class= "save-content btn btn-info btn-sm">Save Changes</button></li>
   </ul>
 {{/if}}
 {{/each}}
