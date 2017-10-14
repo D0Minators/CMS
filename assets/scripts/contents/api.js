@@ -2,8 +2,6 @@ const config = require('../config')
 const store = require('../store')
 
 const createContent = function (data) {
-  console.log('api is loading...')
-  console.log(store.user.token)
   return $.ajax({
     url: config.apiOrigin + '/contents',
     method: 'POST',
@@ -25,8 +23,6 @@ const getContent = function () {
 }
 
 const updateContent = function (data, id) {
-  console.log('updating')
-  console.log(id)
   return $.ajax({
     url: config.apiOrigin + '/contents/' + id,
     method: 'PATCH',
