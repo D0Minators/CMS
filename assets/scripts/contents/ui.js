@@ -42,6 +42,7 @@ const getPostsSuccess = function (data) {
   $('.post-list').append(showContentHTML)
   $('.delete-content').on('click', function (event) {
     event.preventDefault()
+    $(this).parent().parent().remove()
     const id = $(this).parent().parent().data('id')
     api.deleteContent(id)
       .then(deletePostSuccess)
@@ -59,8 +60,8 @@ const onEditPost = function (event) {
   const type = $(this).parent().siblings()[3]
   title.contentEditable = true
   text.contentEditable = true
-  $(title).css('background-color', 'rgb(255,255,65)')
-  $(text).css('background-color', 'rgb(255,255,65)')
+  $(title).css('background-color', 'rgb(39, 43, 43)')
+  $(text).css('background-color', 'rgb(39,43,43)')
   $('.save-content').on('click', function () {
     onSaveChanges(id, title, date, text, type)
   })
@@ -83,6 +84,10 @@ const onSaveChanges = function (id, title, date, text, type) {
   api.updateContent(data, id)
     .then(updatePostSuccess)
     .catch(updatePostFailure)
+  api.getContent()
+    .then(getPostsSuccess)
+    .catch(getPostsFailure)
+    // $('.update-fave').trigger('reset')
 }
 
 const getPostsFailure = function () {
