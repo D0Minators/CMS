@@ -2,7 +2,7 @@ const store = require('../store')
 const api = require('./api')
 const showBlogsTemplate = require('../templates/blog-listing.handlebars')
 const showContent = require('../templates/content-listing.handlebars')
-const getFormFields = require(`../../../lib/get-form-fields`)
+// const getFormFields = require(`../../../lib/get-form-fields`)
 
 const createContentSuccess = function (data) {
   $('#message').text('You have succesfully created content!')
@@ -47,31 +47,43 @@ const getPostsSuccess = function (data) {
       .then(deletePostSuccess)
       .catch(deletePostFailure)
   })
-  $('.edit-content').on('click', function (event) {
-  })
-    .on('click', onEditPost)
+  $('.edit-content').on('click', onEditPost)
 }
 
 const onEditPost = function (event) {
   event.preventDefault()
   const id = $(this).parent().parent().data('id')
-  console.log(id)
   const title = $(this).parent().siblings()[0]
-  console.log(title)
   const date = $(this).parent().siblings()[1]
-  console.log(date)
   const text = $(this).parent().siblings()[2]
-  console.log(text)
   const type = $(this).parent().siblings()[3]
-  console.log(type)
+  title.contentEditable = true
+  text.contentEditable = true
+  $(title).css('background-color', 'rgb(255,255,65)')
+  $(text).css('background-color', 'rgb(255,255,65)')
+  $('.save-content').on('click', function () {
+    onSaveChanges(id, title, date, text, type)
+  })
 }
-//
-// const onSaveChanges = function (event) {
-//
-//   api.updateContent(data, id)
-//     .then(updatePostSuccess)
-//     .catch(updatePostFailure)
-// }
+
+const onSaveChanges = function (id, title, date, text, type) {
+  const newTitle = $(title).html()
+  const newText = $(text).html()
+  const newDate = $(date).html().trim()
+  const newType = $(type).html()
+  const data =
+{
+  content: {
+    title: newTitle,
+    date: newDate,
+    text: newText,
+    type: newType
+  }
+}
+  api.updateContent(data, id)
+    .then(updatePostSuccess)
+    .catch(updatePostFailure)
+}
 
 const getPostsFailure = function () {
   $('#message').text(console.error + ' Error on getting posts')
@@ -113,10 +125,12 @@ const getPagesFailure = function () {
 }
 
 const updatePostSuccess = function () {
+  console.log('YEAH BUDDY')
   $('#message').text('Post updated')
 }
 
 const updatePostFailure = function () {
+  console.log('try again')
   $('#message').text('Error on updating post')
 }
 
@@ -126,7 +140,6 @@ module.exports = {
   getPostsSuccess,
   getPostsFailure,
   getPagesSuccess,
-  // onSaveChanges,
   getPagesFailure,
   getContentSuccess,
   getContentFailure,
