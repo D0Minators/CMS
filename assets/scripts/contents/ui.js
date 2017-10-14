@@ -48,10 +48,10 @@ const getPostsSuccess = function (data) {
       .then(deletePostSuccess)
       .catch(deletePostFailure)
   })
-  $('.edit-content').on('click', onEditContent)
+  $('.edit-content').on('click', onEditPost)
 }
 
-const onEditContent = function (event) {
+const onEditPost = function (event) {
   event.preventDefault()
   const id = $(this).parent().parent().data('id')
   const title = $(this).parent().siblings()[0]
