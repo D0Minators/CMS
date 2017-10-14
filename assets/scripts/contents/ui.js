@@ -47,20 +47,31 @@ const getPostsSuccess = function (data) {
       .then(deletePostSuccess)
       .catch(deletePostFailure)
   })
-  $('#save').on('click', onEditPost)
-  }
+  $('.edit-content').on('click', function (event) {
+  })
+    .on('click', onEditPost)
+}
 
-  const onEditPost = function (event) {
-    event.preventDefault()
-    const data = getFormFields(this)
-    console.log(data)
-    const id = $(this).parent().parent().data('id')
-    console.log('this is', this)
-    console.log(id)
-    api.updateContent(data, id)
-      .then(updatePostSuccess)
-      .catch(updatePostFailure)
-    }
+const onEditPost = function (event) {
+  event.preventDefault()
+  const id = $(this).parent().parent().data('id')
+  console.log(id)
+  const title = $(this).parent().siblings()[0]
+  console.log(title)
+  const date = $(this).parent().siblings()[1]
+  console.log(date)
+  const text = $(this).parent().siblings()[2]
+  console.log(text)
+  const type = $(this).parent().siblings()[3]
+  console.log(type)
+}
+//
+// const onSaveChanges = function (event) {
+//
+//   api.updateContent(data, id)
+//     .then(updatePostSuccess)
+//     .catch(updatePostFailure)
+// }
 
 const getPostsFailure = function () {
   $('#message').text(console.error + ' Error on getting posts')
@@ -115,6 +126,7 @@ module.exports = {
   getPostsSuccess,
   getPostsFailure,
   getPagesSuccess,
+  // onSaveChanges,
   getPagesFailure,
   getContentSuccess,
   getContentFailure,
