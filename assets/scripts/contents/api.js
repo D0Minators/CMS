@@ -2,8 +2,6 @@ const config = require('../config')
 const store = require('../store')
 
 const createContent = function (data) {
-  console.log('api is loading...')
-  console.log(store.user.token)
   return $.ajax({
     url: config.apiOrigin + '/contents',
     method: 'POST',
@@ -24,9 +22,9 @@ const getContent = function () {
   })
 }
 
-const updateContent = function (data, contentId) {
+const updateContent = function (data, id) {
   return $.ajax({
-    url: config.apiOrigin + '/contents/' + contentId,
+    url: config.apiOrigin + '/contents/' + id,
     method: 'PATCH',
     headers: {
       Authorization: 'Token token=' + store.user.token
@@ -35,9 +33,10 @@ const updateContent = function (data, contentId) {
   })
 }
 
-const deleteContent = function () {
+const deleteContent = function (id) {
+  console.log(id)
   return $.ajax({
-    url: config.apiOrigin + '/contents/' + store.user.id,
+    url: config.apiOrigin + '/contents/' + id,
     method: 'DELETE',
     headers: {
       Authorization: 'Token token=' + store.user.token

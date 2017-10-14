@@ -1,16 +1,16 @@
 const store = require('../store')
-
+const api = require('./api')
 const showBlogsTemplate = require('../templates/blog-listing.handlebars')
-
 const showContent = require('../templates/content-listing.handlebars')
+// const getFormFields = require(`../../../lib/get-form-fields`)
 
 const createContentSuccess = function (data) {
-
   $('#message').text('You have succesfully created content!')
+  $('.post-list').empty()
+  $('#view-posts').trigger('reset')
 }
 
 const createContentFailure = function () {
-  console.log('Error on creating content')
   $('#message').text('Error on creating content')
 }
 
@@ -27,41 +27,165 @@ const getOneBlogFailure = function () {
 }
 
 const getContentSuccess = function (data) {
-  console.log('You have succesfully received content!')
   $('#message').text('You have succesfully received content!')
-  // there is a bug with this! This shows up after you sign in. That shouldn't happen!!!
 }
 
 const getContentFailure = function () {
-  console.log('Error on creating content')
-  $('#message').text('Error on creating content')
+  $('#message').text('Error on creating content!')
 }
 
 const getPostsSuccess = function (data) {
-  console.log('Your post-list Has Been Retrived')
-  console.log(data)
-  $('#message').text('You got posts')
-  // const matchingPosts = data.contents.filter(content => content.type === 'post')
-  // const showContentHTML = showContent({ contents: matchingPosts })
-  // $('.post-list').append(showContentHTML)
+  $('#message').text('Here Is Your List Of Posts:')
+  $('.post-list').empty()
+  const matchingPosts = data.contents.filter(content => content.type === 'post')
+  const showContentHTML = showContent({ contents: matchingPosts })
+  $('.post-list').append(showContentHTML)
+  $('.delete-content').on('click', function (event) {
+    event.preventDefault()
+    $(this).parent().parent().remove()
+    const id = $(this).parent().parent().data('id')
+    api.deleteContent(id)
+      .then(deletePostSuccess)
+      .catch(deletePostFailure)
+  })
+  $('.edit-content').on('click', onEditPost)
+}
+
+const onEditPost = function (event) {
+  event.preventDefault()
+  const id = $(this).parent().parent().data('id')
+  const title = $(this).parent().siblings()[0]
+  const date = $(this).parent().siblings()[1]
+  const text = $(this).parent().siblings()[2]
+  const type = $(this).parent().siblings()[3]
+  title.contentEditable = true
+  text.contentEditable = true
+  $(title).css('background-color', 'rgb(39, 43, 43)')
+  $(text).css('background-color', 'rgb(39,43,43)')
+  $('.save-content').on('click', function () {
+    onSavePost(id, title, date, text, type)
+  })
+}
+
+const onSavePost = function (id, title, date, text, type) {
+  const newTitle = $(title).html()
+  const newText = $(text).html()
+  const newDate = $(date).html().trim()
+  const newType = $(type).html()
+  const data =
+{
+  content: {
+    title: newTitle,
+    date: newDate,
+    text: newText,
+    type: newType
+  }
+}
+  api.updateContent(data, id)
+    .then(updatePostSuccess)
+    .catch(updatePostFailure)
+  api.getContent()
+    .then(getPostsSuccess)
+    .catch(getPostsFailure)
 }
 
 const getPostsFailure = function () {
-  console.log('Error getting content')
   $('#message').text(console.error + ' Error on getting posts')
 }
 
 const getPagesSuccess = function (data) {
-  console.log('Your post-list Has Been Retrived')
-  console.log(data)
+  $('#message').text('Here Is Your List Of Pages:')
+  $('.page-list').empty()
   const matchingPages = data.contents.filter(content => content.type === 'page')
   const showContentHTML = showContent({ contents: matchingPages })
   $('.page-list').append(showContentHTML)
+  $('.delete-content').on('click', function (event) {
+    event.preventDefault()
+    $(this).parent().parent().remove()
+    const id = $(this).parent().parent().data('id')
+    api.deleteContent(id)
+      .then(deletePageSuccess)
+      .catch(deletePageFailure)
+  })
+  $('.edit-content').on('click', onEditPage)
+}
+
+const onEditPage = function (event) {
+  event.preventDefault()
+  const id = $(this).parent().parent().data('id')
+  const title = $(this).parent().siblings()[0]
+  const date = $(this).parent().siblings()[1]
+  const text = $(this).parent().siblings()[2]
+  const type = $(this).parent().siblings()[3]
+  title.contentEditable = true
+  text.contentEditable = true
+  $(title).css('background-color', 'rgb(39, 43, 43)')
+  $(text).css('background-color', 'rgb(39,43,43)')
+  $('.save-content').on('click', function () {
+    onSavePage(id, title, date, text, type)
+  })
+}
+
+const onSavePage = function (id, title, date, text, type) {
+  const newTitle = $(title).html()
+  const newText = $(text).html()
+  const newDate = $(date).html().trim()
+  const newType = $(type).html()
+  const data =
+{
+  content: {
+    title: newTitle,
+    date: newDate,
+    text: newText,
+    type: newType
+  }
+}
+  api.updateContent(data, id)
+    .then(updatePageSuccess)
+    .catch(updatePageFailure)
+  api.getContent()
+    .then(getPagesSuccess)
+    .catch(getPagesFailure)
+}
+
+const deletePostSuccess = function () {
+  $('#message').text('Post deleted')
+}
+
+const deletePostFailure = function () {
+  $('#message').text('Error on deleting post')
+}
+
+const deletePageFailure = function () {
+  $('#message').text('Error on deleting page')
+}
+
+const deletePageSuccess = function () {
+  $('#message').text('Page deleted')
 }
 
 const getPagesFailure = function () {
-  console.log('Error getting content')
   $('#message').text('Error on getting pages')
+}
+
+const updatePostSuccess = function () {
+  console.log('YEAH BUDDY')
+  $('#message').text('Post updated')
+}
+
+const updatePostFailure = function () {
+  console.log('try again')
+  $('#message').text('Error on updating post')
+}
+
+const updatePageSuccess = function () {
+  console.log('YEAH BUDDY')
+  $('#message').text('Post updated')
+}
+
+const updatePageFailure = function () {
+  console.log('try again')
+  $('#message').text('Error on updating post')
 }
 module.exports = {
   createContentSuccess,
@@ -72,8 +196,10 @@ module.exports = {
   getPagesFailure,
   getContentSuccess,
   getContentFailure,
-  createContentSuccess,
-  createContentFailure,
   getOneBlogSuccess,
-  getOneBlogFailure
+  getOneBlogFailure,
+  updatePostSuccess,
+  updatePostFailure,
+  deletePageFailure,
+  deletePostFailure
 }

@@ -1,54 +1,27 @@
 const getFormFields = require(`../../../lib/get-form-fields`)
 const store = require('../store')
-const showContent = require('../templates/content-listing.handlebars')
+// const showContent = require('../templates/content-listing.handlebars')
 const api = require('./api')
 const ui = require('./ui')
 
 const onCreateContent = function (event) {
   const data = getFormFields(this)
-  console.log(data)
   event.preventDefault()
   api.createContent(data)
     .then(ui.createContentSuccess)
     .catch(ui.createContentFailure)
 }
 
-const onGetPostContent = function (data) {
-  // const data = getFormFields(this)
-  // console.log(this)
-  // event.preventDefault()
-  api.getContent(data)
-    .then(ui.getContentSuccess)
-    .then(() => {
-      const matchingPosts = data.contents.filter(content => content.type === 'post')
-      const showContentHTML = showContent({ contents: matchingPosts })
-      $('.post-list').append(showContentHTML)
-    })
-    // .catch(ui.getContentFailure)
-    .then(ui.getPostSuccess)
-    .catch(ui.getPostFailure)
+const onGetPostContent = function (event) {
+  api.getContent()
+    .then(ui.getPostsSuccess)
+    .catch(ui.getPostsFailure)
 }
 
-// const onUpdateContent = function (event) {
-//   const data = getFormFields(this)
-//   event.preventDefault()
-//   api.changePassword(data)
-//     .then(ui.changePasswordSuccess)
-//     .catch(ui.changePasswordFailure)
-// }
-//
-// const onDeleteContent = function (event) {
-//   event.preventDefault()
-//   api.signOut()
-//     .then(ui.signOutSuccess)
-//     .catch(ui.signOutFailure)
-// }
-
-const onVisitorView = function (event) {
-  event.preventDefault()
-  api.getAllContent()
-    .then(ui.getAllContentSuccess)
-    .catch(ui.getAllContentFailure)
+const onGetPageContent = function (event) {
+  api.getContent()
+    .then(ui.getPagesSuccess)
+    .catch(ui.getPagesFailure)
 }
 
 const onViewOneBlog = function (event) {
@@ -62,6 +35,8 @@ const onViewOneBlog = function (event) {
 const addHandlers = function () {
   $('#create-content').on('submit', onCreateContent)
   $('.get-blogs').on('submit', onViewOneBlog)
+  $('#view-posts').on('click', onGetPostContent)
+  $('#view-pages').on('click', onGetPageContent)
 }
 
 module.exports = {
