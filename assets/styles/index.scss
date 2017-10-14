@@ -31,10 +31,9 @@ p{
 }
 
 h5{
-  font-size: 30px;
   color: rgb(39, 43, 43);
-  font-weight: 700;
-  font-family: 'Alegreya Sans SC', sans-serif;
+  font-size: 25px !important;
+  font-family: 'Vollkorn', serif !important;
 }
 
 #message{
@@ -94,7 +93,7 @@ h5{
 
  .textboxclass3{
    height: 100px;
-   width: 300px;
+   width: 385px;
    text-align: center;
    font-size: 12px;
    color: rgb(39, 43, 43);
@@ -119,6 +118,14 @@ h5{
   display: none;
 }
 
+.textbox{
+  text-align: center;
+}
+#footerwrap{
+  text-align: center;
+  font-size: 12px;
+  color: white;
+}
 li{
 list-style-type: none;
 font-size: 18px;
