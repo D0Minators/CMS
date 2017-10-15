@@ -28,6 +28,7 @@ const getOneBlogSuccess = function (data) {
   const showBlogsHtml = showBlogsTemplate({ contents: matchingEntries })
   $('.showblogs').empty()
   $('.showblogs').append(showBlogsHtml)
+  $('.showblogs').removeClass('hidden')
 }
 
 const getOneBlogFailure = function () {
