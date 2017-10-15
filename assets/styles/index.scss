@@ -134,19 +134,29 @@ font-family: 'Raleway', sans-serif;
   padding: 30px;
 }
 
+.showpage{
+  background-color: #484848;
+  color: white;
+  text-align: left;
+  margin-left: 200px;
+  margin-right: 200px;
+  padding: 30px;
+}
+
 .textbox{
   text-align: center;
 }
+
 #footerwrap{
   text-align: center;
   font-size: 12px;
   color: white;
 }
 
-li{
-list-style-type: none;
-font-size: 18px;
-text-align: center;
+li {
+  list-style-type: none;
+  font-size: 18px;
+  text-align: center;
 }
 
 .line-row .hr {

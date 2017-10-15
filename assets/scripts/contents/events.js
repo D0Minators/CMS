@@ -32,9 +32,18 @@ const onViewOneBlog = function (event) {
     .catch(ui.getOneBlogFailure)
 }
 
+const onGetPageList = function (event) {
+  event.preventDefault()
+  const email = getFormFields(this).email
+  api.getOneBlog(email)
+    .then(ui.populatePageList)
+    .catch(ui.getPageFailure)
+}
+
 const addHandlers = function () {
   $('#create-content').on('submit', onCreateContent)
   $('.get-blogs').on('submit', onViewOneBlog)
+  $('.get-page-list').on('submit', onGetPageList)
   $('#view-posts').on('click', onGetPostContent)
   $('#view-pages').on('click', onGetPageContent)
 }

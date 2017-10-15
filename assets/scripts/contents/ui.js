@@ -35,6 +35,30 @@ const getOneBlogFailure = function () {
   $('#message').text('Failure on getting one user\'s blog content')
 }
 
+const populatePageList = function (data) {
+  const matchingEntries = data.contents.filter(content => content.type === 'page')
+  matchingEntries.sort(function (a, b) {
+    const aDate = new Date(a.date)
+    const bDate = new Date(b.date)
+    return bDate - aDate
+  })
+  $.each(matchingEntries, function (index, value) {
+    value['date'] = value['date'].split('T')[0]
+  })
+  $('#message').text('Success getting one user\'s web pages')
+  $('#selectPage').empty()
+  $.each(matchingEntries, function (index, value) {
+    $('#selectPage').append($('<option></option>').val(value._id).html(value.title))
+    // $('#selectPage').append($('<option></option>').val('item').html('item'))
+  })
+  store.OwnersPages = matchingEntries
+  $('#selectPage').removeClass('hidden')
+}
+
+const getPageFailure = function () {
+  $('#message').text('Failure on getting one user\'s blog content')
+}
+
 const getContentSuccess = function (data) {
   $('#message').text('You have succesfully received content!')
 }
@@ -210,5 +234,8 @@ module.exports = {
   updatePostSuccess,
   updatePostFailure,
   deletePageFailure,
-  deletePostFailure
+  deletePostFailure,
+  // getPageSuccess,
+  getPageFailure,
+  populatePageList
 }
