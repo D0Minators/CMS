@@ -40,6 +40,9 @@ const getPostsSuccess = function (data) {
   const matchingPosts = data.contents.filter(content => content.type === 'post')
   const showContentHTML = showContent({ contents: matchingPosts })
   $('.post-list').append(showContentHTML)
+  // if (data.contents.length === 0) {
+  //   $('#message').text('You Have Not Created Any Content Yet. Please Add Something first!')
+  // }
   $('.delete-content').on('click', function (event) {
     event.preventDefault()
     $(this).parent().parent().remove()
@@ -100,6 +103,9 @@ const getPagesSuccess = function (data) {
   const matchingPages = data.contents.filter(content => content.type === 'page')
   const showContentHTML = showContent({ contents: matchingPages })
   $('.page-list').append(showContentHTML)
+  // if (data.contents.length === 0) {
+  //   $('#message').text('You Have Not Created Any Content Yet. Please Add Something first!')
+  // }
   $('.delete-content').on('click', function (event) {
     event.preventDefault()
     $(this).parent().parent().remove()
