@@ -2,6 +2,7 @@ const store = require('../store')
 const api = require('./api')
 const showBlogsTemplate = require('../templates/blog-listing.handlebars')
 const showContent = require('../templates/content-listing.handlebars')
+const showPageTemplate = require('../templates/page-listing.handlebars')
 // const getFormFields = require(`../../../lib/get-form-fields`)
 
 const createContentSuccess = function (data) {
@@ -49,10 +50,22 @@ const populatePageList = function (data) {
   $('#selectPage').empty()
   $.each(matchingEntries, function (index, value) {
     $('#selectPage').append($('<option></option>').val(value._id).html(value.title))
-    // $('#selectPage').append($('<option></option>').val('item').html('item'))
   })
   store.OwnersPages = matchingEntries
   $('#selectPage').removeClass('hidden')
+  $('#selectPage').on('change', function () {
+    const value = $(this).val()
+    selectedPage(matchingEntries, value)
+  })
+}
+
+const selectedPage = (matchingEntries, value) => {
+  const pickPage = matchingEntries.filter(content => content._id === value)
+  const showPageHtml = showPageTemplate({ contents: pickPage })
+  $('.showpage').empty()
+  $('.showblogs').empty()
+  $('.showpage').append(showPageHtml)
+  $('.showpage').removeClass('hidden')
 }
 
 const getPageFailure = function () {
