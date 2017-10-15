@@ -68,10 +68,10 @@ const onEditPost = function (event) {
 }
 
 const onSavePost = function (id, title, date, text, type) {
-  const newTitle = $(title).html()
-  const newText = $(text).html()
-  const newDate = $(date).html().trim()
-  const newType = $(type).html()
+  const newTitle = $(title).text()
+  const newText = $(text).text()
+  const newDate = $(date).text().trim()
+  const newType = $(type).text()
   const data =
 {
   content: {
@@ -126,10 +126,10 @@ const onEditPage = function (event) {
 }
 
 const onSavePage = function (id, title, date, text, type) {
-  const newTitle = $(title).html()
-  const newText = $(text).html()
-  const newDate = $(date).html().trim()
-  const newType = $(type).html()
+  const newTitle = $(title).text()
+  const newText = $(text).text()
+  const newDate = $(date).text().trim()
+  const newType = $(type).text()
   const data =
 {
   content: {
@@ -167,7 +167,6 @@ const getPagesFailure = function () {
 }
 
 const updatePostSuccess = function () {
-  console.log('YEAH BUDDY')
   $('#message').text('Post updated')
   api.getContent()
     .then(getPostsSuccess)
