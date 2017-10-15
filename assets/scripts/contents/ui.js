@@ -16,6 +16,11 @@ const createContentFailure = function () {
 
 const getOneBlogSuccess = function (data) {
   const matchingEntries = data.contents.filter(content => content.type === 'post')
+  matchingEntries.sort(function (a, b) {
+    const aDate = new Date(a.date)
+    const bDate = new Date(b.date)
+    return bDate - aDate
+  })
   $.each(matchingEntries, function (index, value) {
     value['date'] = value['date'].split('T')[0]
   })
