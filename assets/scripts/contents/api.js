@@ -51,9 +51,9 @@ const getAllContent = function () {
   })
 }
 
-const getOneBlog = function () {
+const getOneBlog = function (email) {
   return $.ajax({
-    url: config.apiOrigin + '/contents',
+    url: config.apiOrigin + '/find-by-email/' + email,
     method: 'GET'
   })
 }

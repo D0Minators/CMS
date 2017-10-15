@@ -1,10 +1,22 @@
-{{#each contents as |content|}}
 
-  <ul class="content" data-id="{{content.id}}">
-    <li> Id: {{content.id}} </li>
-    <li> Title: {{content.title}} </li>
-    <li> Date: {{content.date}} </li>
-    <li> Text: {{content.text}} </li>
-  </ul>
+<div class="blog-header">
+  <div class="container">
+    <h1 class="blog-title">Blog</h1>
+  </div>
+</div>
 
-{{/each}}
+<div class="row">
+  <div class="col-sm-8 blog-main">
+    {{#each contents as |content|}}
+      <div class="blog-post">
+        <h2 class="blog-post-title">{{content.title}}</h2>
+        <p class="blog-post-meta">
+          {{content.date}}
+        </p>
+        <p>
+          {{content.text}}
+        </p>
+      </div>
+    {{/each}}
+  </div>
+</div>

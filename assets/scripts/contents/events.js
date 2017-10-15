@@ -25,9 +25,9 @@ const onGetPageContent = function (event) {
 }
 
 const onViewOneBlog = function (event) {
-  store.userid = getFormFields(this).userid
+  const email = getFormFields(this).email
   event.preventDefault()
-  api.getOneBlog()
+  api.getOneBlog(email)
     .then(ui.getOneBlogSuccess)
     .catch(ui.getOneBlogFailure)
 }
