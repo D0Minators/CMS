@@ -81,6 +81,8 @@ const onSavePost = function (id, title, date, text, type) {
     type: newType
   }
 }
+  title.remove()
+  text.remove()
   api.updateContent(data, id)
     .then(updatePostSuccess)
     .catch(updatePostFailure)
@@ -140,6 +142,8 @@ const onSavePage = function (id, title, date, text, type) {
     type: newType
   }
 }
+  title.remove()
+  text.remove()
   api.updateContent(data, id)
     .then(updatePageSuccess)
     .catch(updatePageFailure)
