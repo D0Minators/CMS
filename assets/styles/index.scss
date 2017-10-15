@@ -109,8 +109,27 @@ h5{
   font-size: 12px;
  font-family: 'Vollkorn', serif;
 }
+
 .post-list{
-  overflow: auto
+  overflow: auto;
+  background-color: #484848;
+  color: white;
+  text-align: center;
+  width: 800px;
+  overflow-y: auto;
+  max-height: 100vh;
+   display: inline-block;
+}
+
+.page-list{
+  overflow: auto;
+  background-color: #484848;
+color: white;
+text-align: center;
+width: 800px;
+overflow-y: auto;
+max-height: 100vh;
+ display: inline-block;
 }
 
 #accordion{
@@ -118,6 +137,7 @@ h5{
 font-family: 'Raleway', sans-serif;
   color: white;
   font-size: 35px;
+  text-align: center;
 }
 #blogcontent{
  font-family: 'Vollkorn', serif;
