@@ -32,8 +32,13 @@ const onViewOneBlog = function (event) {
     .catch(ui.getOneBlogFailure)
 }
 
+const onChangeCreateContentMessage = function (event) {
+  $('#message').text('Start Telling Your Story:')
+}
+
 const addHandlers = function () {
   $('#create-content').on('submit', onCreateContent)
+  $('.mb-0').on('click', onChangeCreateContentMessage)
   $('.get-blogs').on('submit', onViewOneBlog)
   $('#view-posts').on('click', onGetPostContent)
   $('#view-pages').on('click', onGetPageContent)
