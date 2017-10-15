@@ -86,9 +86,6 @@ const onSavePost = function (id, title, date, text, type) {
   api.updateContent(data, id)
     .then(updatePostSuccess)
     .catch(updatePostFailure)
-  api.getContent()
-    .then(getPostsSuccess)
-    .catch(getPostsFailure)
 }
 
 const getPostsFailure = function () {
@@ -147,9 +144,6 @@ const onSavePage = function (id, title, date, text, type) {
   api.updateContent(data, id)
     .then(updatePageSuccess)
     .catch(updatePageFailure)
-  api.getContent()
-    .then(getPagesSuccess)
-    .catch(getPagesFailure)
 }
 
 const deletePostSuccess = function () {
@@ -175,6 +169,9 @@ const getPagesFailure = function () {
 const updatePostSuccess = function () {
   console.log('YEAH BUDDY')
   $('#message').text('Post updated')
+  api.getContent()
+    .then(getPostsSuccess)
+    .catch(getPostsFailure)
 }
 
 const updatePostFailure = function () {
@@ -185,6 +182,9 @@ const updatePostFailure = function () {
 const updatePageSuccess = function () {
   console.log('YEAH BUDDY')
   $('#message').text('Post updated')
+  api.getContent()
+    .then(getPagesSuccess)
+    .catch(getPagesFailure)
 }
 
 const updatePageFailure = function () {
