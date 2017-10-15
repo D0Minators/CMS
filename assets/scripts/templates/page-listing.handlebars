@@ -1,0 +1,21 @@
+<!--
+<div class="page-header">
+  <div class="container">
+    <h1 class="page-title">content.title</h1>
+  </div>
+</div> -->
+<div class="row">
+  <div class="col-sm-8 blog-main">
+    {{#each contents as |content|}}
+      <div class="blog-post">
+        <h2 class="blog-post-title">{{content.title}}</h2>
+        <p class="blog-post-meta">
+          {{content.date}}
+        </p>
+        <p>
+          {{content.text}}
+        </p>
+      </div>
+    {{/each}}
+  </div>
+</div>
