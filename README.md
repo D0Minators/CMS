@@ -22,7 +22,7 @@ our planning process, etc.: https://github.com/D0Minators/CMS-API
 
 # Initial Wireframe
 
-<a href="https://imgur.com/a/UAmj1">Wireframe</a>)
+<a href="https://imgur.com/a/UAmj1">Wireframe</a>
 
 
 # Our development process and problem-solving strategy
