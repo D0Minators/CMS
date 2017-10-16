@@ -114,14 +114,42 @@ const onSavePage = function (id, title, date, text, type) {
 }
 ```
 Oh Patch/Update! One of my favorite CRUD actions...
-To get to the above code
-snippet I went through a great deal of refactoring. One of the stumper moments
-was actually in the end a fairly minimal fix. In onSavePage the third line passes
-through to the new data object the date information. For a while we were stuck
-unsure why the server was having so much difficulty accepting a data object which,
-at each point, seemed to be precisely what it should be accepting. In the end,
-.trim() was all that was needed, as a trailing white space altered (badly) the
-date content.
+To get to the above code snippet I went through a great deal of refactoring.
+One of the stumper moments was actually in the end a fairly minimal fix. In
+onSavePage the third line passes through to the new data object the date information.
+For a while we were stuck unsure why the server was having so much difficulty
+(500 Server Errors or successful completion without actually saving changes...)
+accepting a data object which, at each point I logged it, seemed to be precisely
+what it should be accepting. In the end, .trim() was all that was needed, as a
+trailing white space altered the date content.
+
+Stephanie
+```css
+body{
+text-align: center;
+font-family: 'Vollkorn', serif;
+background-color: black;
+margin: auto;
+background-image: url(https://media.giphy.com/media/LEQ1IEMumhwmk/giphy.gif);
+height: 100%;
+background-repeat: no-repeat;
+background-size: cover;
+}
+```
+I have originally wanted to use a 'video' sort of background, but after mucking around for a few hours, I found that I could use a 'giphy' background worked equallty as well.
+```css
+.post-list{
+overflow: auto;
+background-color: #484848;
+color: white;
+text-align: center;
+width: 800px;
+overflow-y: auto;
+max-height: 100vh;
+display: inline-block;
+}
+```
+Prior to adding the 'scroll' function to our post and page div, the background would go funky upon adding more and more posts to the list. I realised this could be quickly fixed with a strolling div for more of a pleasant UX!
 
 ## Unsolved Problems and Grows for the Future
 - Currently we have User & Visitor actions in place, we would like to add an
