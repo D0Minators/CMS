@@ -12,7 +12,7 @@ const createContentSuccess = function (data) {
 }
 
 const createContentFailure = function () {
-  $('#message').text('Error on creating content')
+  $('#message').text('Error on creating content. Please Check All Fields Are Filled In.')
 }
 
 const getOneBlogSuccess = function (data) {
@@ -77,7 +77,7 @@ const getContentSuccess = function (data) {
 }
 
 const getContentFailure = function () {
-  $('#message').text('Error on creating content!')
+  $('#message').text('Error on getting content.')
 }
 
 const getPostsSuccess = function (data) {
@@ -86,6 +86,9 @@ const getPostsSuccess = function (data) {
   const matchingPosts = data.contents.filter(content => content.type === 'post')
   const showContentHTML = showContent({ contents: matchingPosts })
   $('.post-list').append(showContentHTML)
+  // if (data.contents.length === 0) {
+  //   $('#message').text('You Have Not Created Any Content Yet. Please Add Something first!')
+  // }
   $('.delete-content').on('click', function (event) {
     event.preventDefault()
     $(this).parent().parent().remove()
@@ -106,11 +109,12 @@ const onEditPost = function (event) {
   const type = $(this).parent().siblings()[3]
   title.contentEditable = true
   text.contentEditable = true
-  $(title).css('background-color', 'rgb(39, 43, 43)')
-  $(text).css('background-color', 'rgb(39,43,43)')
+  $(title).css('background-color', 'rgba(39, 43, 43, 0.7)')
+  $(text).css('background-color', 'rgba(39,43,43, 0.7)')
   $('.save-content').on('click', function () {
     onSavePost(id, title, date, text, type)
   })
+  $('#message').text('You Are Editing Your Content:')
 }
 
 const onSavePost = function (id, title, date, text, type) {
@@ -144,6 +148,9 @@ const getPagesSuccess = function (data) {
   const matchingPages = data.contents.filter(content => content.type === 'page')
   const showContentHTML = showContent({ contents: matchingPages })
   $('.page-list').append(showContentHTML)
+  // if (data.contents.length === 0) {
+  //   $('#message').text('You Have Not Created Any Content Yet. Please Add Something first!')
+  // }
   $('.delete-content').on('click', function (event) {
     event.preventDefault()
     $(this).parent().parent().remove()
@@ -213,28 +220,25 @@ const getPagesFailure = function () {
 }
 
 const updatePostSuccess = function () {
-  $('#message').text('Post updated')
+  $('#message').text('Your Post Has Been Updated')
   api.getContent()
     .then(getPostsSuccess)
     .catch(getPostsFailure)
 }
 
 const updatePostFailure = function () {
-  console.log('try again')
   $('#message').text('Error on updating post')
 }
 
 const updatePageSuccess = function () {
-  console.log('YEAH BUDDY')
-  $('#message').text('Post updated')
+  $('#message').text('Your Page Has Been Updated')
   api.getContent()
     .then(getPagesSuccess)
     .catch(getPagesFailure)
 }
 
 const updatePageFailure = function () {
-  console.log('try again')
-  $('#message').text('Error on updating post')
+  $('#message').text('Error on updating page')
 }
 module.exports = {
   createContentSuccess,
