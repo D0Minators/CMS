@@ -11,7 +11,7 @@ const createContentSuccess = function (data) {
 }
 
 const createContentFailure = function () {
-  $('#message').text('Error on creating content.')
+  $('#message').text('Error on creating content. Please Check All Fields Are Filled In.')
 }
 
 const getOneBlogSuccess = function (data) {
