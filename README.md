@@ -22,19 +22,21 @@ our planning process, etc.: https://github.com/D0Minators/CMS-API
 
 # Initial Wireframe
 
-![Wireframe](https://imgur.com/a/UAmj1)
+<a href="https://imgur.com/a/UAmj1">Wireframe</a>)
 
 
 # Our development process and problem-solving strategy
 
-![Roles](https://imgur.com/a/WhTn7)
+<a href="https://imgur.com/a/WhTn7">Roles</a>
+
 We began this full-stack project by discussing what roles we would all take
 primary responsibilty for during the project, as well as sketching out our ERD,
 Wireframe, Schedule, and user/visitor experience. With our plan in place, we moved
 on to implementing the back-end.
 
 # Schedule
-![Schedule](https://imgur.com/a/NKdWO)
+
+<a href="https://imgur.com/a/NKdWO">Schedule</a>
 
 All four of us (Dahnaya, Ripley, Stephanie, Susan) worked together to unzip the
 template, make the updates necessary to set up the project, create the git repo,
@@ -178,4 +180,4 @@ having to search for content.
 
 ## Obligatory Cute Furry Creature
 
-![Obligatory Puppy photo](https://i.imgur.com/pKf2dZ4.gif)
+![Obligatory Furry Creature photo](https://i.imgur.com/pKf2dZ4.gif)
