@@ -34,7 +34,6 @@ const updateContent = function (data, id) {
 }
 
 const deleteContent = function (id) {
-  console.log(id)
   return $.ajax({
     url: config.apiOrigin + '/contents/' + id,
     method: 'DELETE',
