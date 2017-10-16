@@ -5,7 +5,7 @@ body{
   text-align: center;
   font-family: 'Vollkorn', serif;
   background-color: black;
- margin: auto;
+  margin: auto;
   background-image: url(https://media.giphy.com/media/LEQ1IEMumhwmk/giphy.gif);
   // background-image: url(https://media.giphy.com/media/3oEdvcbU0yVPFRBQAM/giphy-downsized-large.gif);
   height: 100%;
@@ -123,6 +123,12 @@ font-family: 'Raleway', sans-serif;
  font-family: 'Vollkorn', serif;
     color: black;
     font-size: 20px;
+}
+
+.showblogs{
+  background-color: #484848;
+  color: white;
+  text-align: left;
 }
 
 .textbox{

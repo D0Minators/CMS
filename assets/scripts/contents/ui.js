@@ -15,11 +15,14 @@ const createContentFailure = function () {
 }
 
 const getOneBlogSuccess = function (data) {
-  const matchingEntries = data.contents.filter(content => content._owner === store.userid)
-  $('#message').text('Success on getting one user\'s blog content')
+  const matchingEntries = data.contents.filter(content => content.type === 'post')
+  $.each(matchingEntries, function (index, value) {
+    value['date'] = value['date'].split('T')[0]
+  })
+  $('#message').text('Success getting one user\'s blog content')
   const showBlogsHtml = showBlogsTemplate({ contents: matchingEntries })
-  $('.showBlogs').empty()
-  $('.showBlogs').append(showBlogsHtml)
+  $('.showblogs').empty()
+  $('.showblogs').append(showBlogsHtml)
 }
 
 const getOneBlogFailure = function () {
