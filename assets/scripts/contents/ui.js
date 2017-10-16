@@ -2,6 +2,7 @@ const store = require('../store')
 const api = require('./api')
 const showBlogsTemplate = require('../templates/blog-listing.handlebars')
 const showContent = require('../templates/content-listing.handlebars')
+const showPageTemplate = require('../templates/page-listing.handlebars')
 // const getFormFields = require(`../../../lib/get-form-fields`)
 
 const createContentSuccess = function (data) {
@@ -15,14 +16,59 @@ const createContentFailure = function () {
 }
 
 const getOneBlogSuccess = function (data) {
-  const matchingEntries = data.contents.filter(content => content._owner === store.userid)
-  $('#message').text('Success on getting one user\'s blog content')
+  const matchingEntries = data.contents.filter(content => content.type === 'post')
+  matchingEntries.sort(function (a, b) {
+    const aDate = new Date(a.date)
+    const bDate = new Date(b.date)
+    return bDate - aDate
+  })
+  $.each(matchingEntries, function (index, value) {
+    value['date'] = value['date'].split('T')[0]
+  })
+  $('#message').text('Success getting one user\'s blog content')
   const showBlogsHtml = showBlogsTemplate({ contents: matchingEntries })
-  $('.showBlogs').empty()
-  $('.showBlogs').append(showBlogsHtml)
+  $('.showblogs').empty()
+  $('.showblogs').append(showBlogsHtml)
+  $('.showblogs').removeClass('hidden')
 }
 
 const getOneBlogFailure = function () {
+  $('#message').text('Failure on getting one user\'s blog content')
+}
+
+const populatePageList = function (data) {
+  const matchingEntries = data.contents.filter(content => content.type === 'page')
+  matchingEntries.sort(function (a, b) {
+    const aDate = new Date(a.date)
+    const bDate = new Date(b.date)
+    return bDate - aDate
+  })
+  $.each(matchingEntries, function (index, value) {
+    value['date'] = value['date'].split('T')[0]
+  })
+  $('#message').text('Success getting one user\'s web pages')
+  $('#selectPage').empty()
+  $.each(matchingEntries, function (index, value) {
+    $('#selectPage').append($('<option></option>').val(value._id).html(value.title))
+  })
+  store.OwnersPages = matchingEntries
+  $('#selectPage').removeClass('hidden')
+  $('#selectPage').on('change', function () {
+    const value = $(this).val()
+    selectedPage(matchingEntries, value)
+  })
+}
+
+const selectedPage = (matchingEntries, value) => {
+  const pickPage = matchingEntries.filter(content => content._id === value)
+  const showPageHtml = showPageTemplate({ contents: pickPage })
+  $('.showpage').empty()
+  $('.showblogs').empty()
+  $('.showpage').append(showPageHtml)
+  $('.showpage').removeClass('hidden')
+}
+
+const getPageFailure = function () {
   $('#message').text('Failure on getting one user\'s blog content')
 }
 
@@ -72,10 +118,10 @@ const onEditPost = function (event) {
 }
 
 const onSavePost = function (id, title, date, text, type) {
-  const newTitle = $(title).html()
-  const newText = $(text).html()
-  const newDate = $(date).html().trim()
-  const newType = $(type).html()
+  const newTitle = $(title).text()
+  const newText = $(text).text()
+  const newDate = $(date).text().trim()
+  const newType = $(type).text()
   const data =
 {
   content: {
@@ -85,12 +131,11 @@ const onSavePost = function (id, title, date, text, type) {
     type: newType
   }
 }
+  title.remove()
+  text.remove()
   api.updateContent(data, id)
     .then(updatePostSuccess)
     .catch(updatePostFailure)
-  api.getContent()
-    .then(getPostsSuccess)
-    .catch(getPostsFailure)
 }
 
 const getPostsFailure = function () {
@@ -134,10 +179,10 @@ const onEditPage = function (event) {
 }
 
 const onSavePage = function (id, title, date, text, type) {
-  const newTitle = $(title).html()
-  const newText = $(text).html()
-  const newDate = $(date).html().trim()
-  const newType = $(type).html()
+  const newTitle = $(title).text()
+  const newText = $(text).text()
+  const newDate = $(date).text().trim()
+  const newType = $(type).text()
   const data =
 {
   content: {
@@ -147,12 +192,11 @@ const onSavePage = function (id, title, date, text, type) {
     type: newType
   }
 }
+  title.remove()
+  text.remove()
   api.updateContent(data, id)
     .then(updatePageSuccess)
     .catch(updatePageFailure)
-  api.getContent()
-    .then(getPagesSuccess)
-    .catch(getPagesFailure)
 }
 
 const deletePostSuccess = function () {
@@ -176,7 +220,10 @@ const getPagesFailure = function () {
 }
 
 const updatePostSuccess = function () {
-  $('#message').text('Your Post Has Been Update.')
+  $('#message').text('Your Post Has Been Updated')
+  api.getContent()
+    .then(getPostsSuccess)
+    .catch(getPostsFailure)
 }
 
 const updatePostFailure = function () {
@@ -184,11 +231,14 @@ const updatePostFailure = function () {
 }
 
 const updatePageSuccess = function () {
-  $('#message').text('Your Page Has Been Update.')
+  $('#message').text('Your Page Has Been Updated')
+  api.getContent()
+    .then(getPagesSuccess)
+    .catch(getPagesFailure)
 }
 
 const updatePageFailure = function () {
-  $('#message').text('Error on updating post')
+  $('#message').text('Error on updating page')
 }
 module.exports = {
   createContentSuccess,
@@ -204,5 +254,8 @@ module.exports = {
   updatePostSuccess,
   updatePostFailure,
   deletePageFailure,
-  deletePostFailure
+  deletePostFailure,
+  // getPageSuccess,
+  getPageFailure,
+  populatePageList
 }
