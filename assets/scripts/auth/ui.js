@@ -50,7 +50,7 @@ const signOutSuccess = function (data) {
   $('#sign-in').trigger('reset')
   $('#sign-up').trigger('reset')
   // $('#blurb').show()
-  $('#create-content').trigger('reset')
+  $('form').trigger('reset')
 }
 
 const signOutFailure = function () {
