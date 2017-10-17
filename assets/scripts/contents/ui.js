@@ -17,19 +17,23 @@ const createContentFailure = function () {
 
 const getOneBlogSuccess = function (data) {
   const matchingEntries = data.contents.filter(content => content.type === 'post')
-  matchingEntries.sort(function (a, b) {
-    const aDate = new Date(a.date)
-    const bDate = new Date(b.date)
-    return bDate - aDate
-  })
-  $.each(matchingEntries, function (index, value) {
-    value['date'] = value['date'].split('T')[0]
-  })
-  $('#message').text('Success getting one user\'s blog content')
-  const showBlogsHtml = showBlogsTemplate({ contents: matchingEntries })
-  $('.showblogs').empty()
-  $('.showblogs').append(showBlogsHtml)
-  $('.showblogs').removeClass('hidden')
+  if (matchingEntries.length === 0) {
+    $('#message').text('This user does not have any blog posts')
+  } else {
+    $('#message').text('Success getting one user\'s blog content')
+    matchingEntries.sort(function (a, b) {
+      const aDate = new Date(a.date)
+      const bDate = new Date(b.date)
+      return bDate - aDate
+    })
+    $.each(matchingEntries, function (index, value) {
+      value['date'] = value['date'].split('T')[0]
+    })
+    const showBlogsHtml = showBlogsTemplate({ contents: matchingEntries })
+    $('.showblogs').empty()
+    $('.showblogs').append(showBlogsHtml)
+    $('.showblogs').removeClass('hidden')
+  }
 }
 
 const getOneBlogFailure = function () {
@@ -38,27 +42,31 @@ const getOneBlogFailure = function () {
 
 const populatePageList = function (data) {
   const matchingEntries = data.contents.filter(content => content.type === 'page')
-  matchingEntries.sort(function (a, b) {
-    const aDate = new Date(a.date)
-    const bDate = new Date(b.date)
-    return bDate - aDate
-  })
-  $.each(matchingEntries, function (index, value) {
-    value['date'] = value['date'].split('T')[0]
-  })
-  $('#message').text('Success getting one user\'s web pages')
-  $('#selectPage').empty()
-  $('#selectPage').append($('<option value=0>Select a Page to View</option>'))
-  $.each(matchingEntries, function (index, value) {
-    $('#selectPage').append($('<option></option>').val(value._id).html(value.title))
-  })
+  if (matchingEntries.length === 0) {
+    $('#message').text('This user does not have any web pages')
+  } else {
+    $('#message').text('Success getting one user\'s web pages')
+    matchingEntries.sort(function (a, b) {
+      const aDate = new Date(a.date)
+      const bDate = new Date(b.date)
+      return bDate - aDate
+    })
+    $.each(matchingEntries, function (index, value) {
+      value['date'] = value['date'].split('T')[0]
+    })
+    $('#selectPage').empty()
+    $('#selectPage').append($('<option value=0>Select a Page to View</option>'))
+    $.each(matchingEntries, function (index, value) {
+      $('#selectPage').append($('<option></option>').val(value._id).html(value.title))
+    })
 
-  store.OwnersPages = matchingEntries
-  $('#selectPage').removeClass('hidden')
-  $('#selectPage').on('change', function () {
-    const value = $(this).val()
-    selectedPage(matchingEntries, value)
-  })
+    store.OwnersPages = matchingEntries
+    $('#selectPage').removeClass('hidden')
+    $('#selectPage').on('change', function () {
+      const value = $(this).val()
+      selectedPage(matchingEntries, value)
+    })
+  }
 }
 
 const selectedPage = (matchingEntries, value) => {
