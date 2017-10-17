@@ -104,6 +104,8 @@ const getPostsSuccess = function (data) {
 
 const onEditPost = function (event) {
   event.preventDefault()
+  $('.save-content').show()
+  $('.edit-content').hide()
   const id = $(this).parent().parent().data('id')
   const title = $(this).parent().siblings()[0]
   const date = $(this).parent().siblings()[1]
@@ -166,6 +168,8 @@ const getPagesSuccess = function (data) {
 
 const onEditPage = function (event) {
   event.preventDefault()
+  $('.save-content').show()
+  $('.edit-content').hide()
   const id = $(this).parent().parent().data('id')
   const title = $(this).parent().siblings()[0]
   const date = $(this).parent().siblings()[1]
