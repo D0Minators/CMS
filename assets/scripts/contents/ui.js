@@ -48,9 +48,11 @@ const populatePageList = function (data) {
   })
   $('#message').text('Success getting one user\'s web pages')
   $('#selectPage').empty()
+  $('#selectPage').append($('<option value=0>Select a Page to View</option>'))
   $.each(matchingEntries, function (index, value) {
     $('#selectPage').append($('<option></option>').val(value._id).html(value.title))
   })
+
   store.OwnersPages = matchingEntries
   $('#selectPage').removeClass('hidden')
   $('#selectPage').on('change', function () {
