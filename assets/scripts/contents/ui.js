@@ -94,11 +94,12 @@ const getPostsSuccess = function (data) {
   $('#message').text('Here Is Your List Of Posts:')
   $('.post-list').empty()
   const matchingPosts = data.contents.filter(content => content.type === 'post')
+  $.each(matchingPosts, function (index, value) {
+    value['date'] = value['date'].split('T')[0]
+  })
   const showContentHTML = showContent({ contents: matchingPosts })
+
   $('.post-list').append(showContentHTML)
-  // if (data.contents.length === 0) {
-  //   $('#message').text('You Have Not Created Any Content Yet. Please Add Something first!')
-  // }
   $('.delete-content').on('click', function (event) {
     event.preventDefault()
     $(this).parent().parent().remove()
@@ -158,11 +159,11 @@ const getPagesSuccess = function (data) {
   $('#message').text('Here Is Your List Of Pages:')
   $('.page-list').empty()
   const matchingPages = data.contents.filter(content => content.type === 'page')
+  $.each(matchingPages, function (index, value) {
+    value['date'] = value['date'].split('T')[0]
+  })
   const showContentHTML = showContent({ contents: matchingPages })
   $('.page-list').append(showContentHTML)
-  // if (data.contents.length === 0) {
-  //   $('#message').text('You Have Not Created Any Content Yet. Please Add Something first!')
-  // }
   $('.delete-content').on('click', function (event) {
     event.preventDefault()
     $(this).parent().parent().remove()
