@@ -39,7 +39,7 @@ const onChangeCreateContentMessage = function (event) {
 const onGetPageList = function (event) {
   event.preventDefault()
   const email = getFormFields(this).email
-  api.getOneBlog(email)
+  api.getOnePage(email)
     .then(ui.populatePageList)
     .catch(ui.getPageFailure)
 }
