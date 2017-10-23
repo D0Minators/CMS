@@ -9,6 +9,7 @@ const createContentSuccess = function (data) {
   $('#message').text('You have succesfully created content!')
   $('.post-list').empty()
   $('#view-posts').trigger('reset')
+  $('#create-content').trigger('reset')
 }
 
 const createContentFailure = function () {
@@ -25,7 +26,8 @@ const getOneBlogSuccess = function (data) {
   $.each(matchingEntries, function (index, value) {
     value['date'] = value['date'].split('T')[0]
   })
-  $('#message').text('Success getting one user\'s blog content')
+  $('form').trigger('reset')
+  // $('#message').text('Success getting one user\'s blog content')
   const showBlogsHtml = showBlogsTemplate({ contents: matchingEntries })
   $('.showblogs').empty()
   $('.showblogs').append(showBlogsHtml)
@@ -45,8 +47,9 @@ const populatePageList = function (data) {
   })
   $.each(matchingEntries, function (index, value) {
     value['date'] = value['date'].split('T')[0]
+    console.log(matchingEntries)
   })
-  $('#message').text('Success getting one user\'s web pages')
+  // $('#message').text('Success getting one user\'s web pages')
   $('#selectPage').empty()
   $('#selectPage').append($('<option value=0>Select a Page to View</option>'))
   $.each(matchingEntries, function (index, value) {
@@ -54,6 +57,7 @@ const populatePageList = function (data) {
   })
 
   store.OwnersPages = matchingEntries
+  $('form').trigger('reset')
   $('#selectPage').removeClass('hidden')
   $('#selectPage').on('change', function () {
     const value = $(this).val()
