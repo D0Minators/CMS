@@ -51,17 +51,28 @@ const getAllContent = function () {
 }
 
 const getOneBlog = function (email) {
+  console.log(email)
+  $('#message').text(`Success getting ${email}'s Blogs`)
   return $.ajax({
     url: config.apiOrigin + '/find-by-email/' + email,
     method: 'GET'
   })
 }
 
+const getOnePage = function (email) {
+  console.log(email)
+  $('#message').text(`Success getting ${email}'s web pages`)
+  return $.ajax({
+    url: config.apiOrigin + '/find-by-email/' + email,
+    method: 'GET'
+  })
+}
 module.exports = {
   createContent,
   getContent,
   updateContent,
   deleteContent,
   getAllContent,
-  getOneBlog
+  getOneBlog,
+  getOnePage
 }
