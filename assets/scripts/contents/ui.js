@@ -17,19 +17,25 @@ const createContentFailure = function () {
 
 const getOneBlogSuccess = function (data) {
   const matchingEntries = data.contents.filter(content => content.type === 'post')
-  matchingEntries.sort(function (a, b) {
-    const aDate = new Date(a.date)
-    const bDate = new Date(b.date)
-    return bDate - aDate
-  })
-  $.each(matchingEntries, function (index, value) {
-    value['date'] = value['date'].split('T')[0]
-  })
-  $('form').trigger('reset')
-  const showBlogsHtml = showBlogsTemplate({ contents: matchingEntries })
-  $('.showblogs').empty()
-  $('.showblogs').append(showBlogsHtml)
-  $('.showblogs').removeClass('hidden')
+
+  if (matchingEntries.length === 0) {
+    $('#message').text('This user does not have any blog posts')
+  } else {
+    $('#message').text('Success getting one user\'s blog content')
+    matchingEntries.sort(function (a, b) {
+      const aDate = new Date(a.date)
+      const bDate = new Date(b.date)
+      return bDate - aDate
+    })
+    $.each(matchingEntries, function (index, value) {
+      value['date'] = value['date'].split('T')[0]
+    })
+    $('form').trigger('reset')
+    const showBlogsHtml = showBlogsTemplate({ contents: matchingEntries })
+    $('.showblogs').empty()
+    $('.showblogs').append(showBlogsHtml)
+    $('.showblogs').removeClass('hidden')
+  }
 }
 
 const getOneBlogFailure = function () {
@@ -38,27 +44,33 @@ const getOneBlogFailure = function () {
 
 const populatePageList = function (data) {
   const matchingEntries = data.contents.filter(content => content.type === 'page')
-  matchingEntries.sort(function (a, b) {
-    const aDate = new Date(a.date)
-    const bDate = new Date(b.date)
-    return bDate - aDate
-  })
-  $.each(matchingEntries, function (index, value) {
-    value['date'] = value['date'].split('T')[0]
-  })
-  $('#selectPage').empty()
-  $('#selectPage').append($('<option value=0>Select a Page to View</option>'))
-  $.each(matchingEntries, function (index, value) {
-    $('#selectPage').append($('<option></option>').val(value._id).html(value.title))
-  })
+  
+  if (matchingEntries.length === 0) {
+    $('#message').text('This user does not have any web pages')
+  } else {
+    $('#message').text('Success getting one user\'s web pages')
+    matchingEntries.sort(function (a, b) {
+      const aDate = new Date(a.date)
+      const bDate = new Date(b.date)
+      return bDate - aDate
+    })
+    $.each(matchingEntries, function (index, value) {
+      value['date'] = value['date'].split('T')[0]
+    })
+    $('#selectPage').empty()
+    $('#selectPage').append($('<option value=0>Select a Page to View</option>'))
+    $.each(matchingEntries, function (index, value) {
+      $('#selectPage').append($('<option></option>').val(value._id).html(value.title))
+    })
 
-  store.OwnersPages = matchingEntries
-  $('form').trigger('reset')
-  $('#selectPage').removeClass('hidden')
-  $('#selectPage').on('change', function () {
-    const value = $(this).val()
-    selectedPage(matchingEntries, value)
-  })
+    store.OwnersPages = matchingEntries
+    $('form').trigger('reset')
+    $('#selectPage').removeClass('hidden')
+    $('#selectPage').on('change', function () {
+      const value = $(this).val()
+      selectedPage(matchingEntries, value)
+    })
+  }
 }
 
 const selectedPage = (matchingEntries, value) => {
@@ -86,7 +98,11 @@ const getPostsSuccess = function (data) {
   $('#message').text('Here Is Your List Of Posts:')
   $('.post-list').empty()
   const matchingPosts = data.contents.filter(content => content.type === 'post')
+  $.each(matchingPosts, function (index, value) {
+    value['date'] = value['date'].split('T')[0]
+  })
   const showContentHTML = showContent({ contents: matchingPosts })
+
   $('.post-list').append(showContentHTML)
   $('.delete-content').on('click', function (event) {
     event.preventDefault()
@@ -101,6 +117,8 @@ const getPostsSuccess = function (data) {
 
 const onEditPost = function (event) {
   event.preventDefault()
+  $('.save-content').show()
+  $('.edit-content').hide()
   const id = $(this).parent().parent().data('id')
   const title = $(this).parent().siblings()[0]
   const date = $(this).parent().siblings()[1]
@@ -145,6 +163,9 @@ const getPagesSuccess = function (data) {
   $('#message').text('Here Is Your List Of Pages:')
   $('.page-list').empty()
   const matchingPages = data.contents.filter(content => content.type === 'page')
+  $.each(matchingPages, function (index, value) {
+    value['date'] = value['date'].split('T')[0]
+  })
   const showContentHTML = showContent({ contents: matchingPages })
   $('.page-list').append(showContentHTML)
   $('.delete-content').on('click', function (event) {
@@ -160,6 +181,8 @@ const getPagesSuccess = function (data) {
 
 const onEditPage = function (event) {
   event.preventDefault()
+  $('.save-content').show()
+  $('.edit-content').hide()
   const id = $(this).parent().parent().data('id')
   const title = $(this).parent().siblings()[0]
   const date = $(this).parent().siblings()[1]
