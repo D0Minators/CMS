@@ -3,12 +3,12 @@ const api = require('./api')
 const showBlogsTemplate = require('../templates/blog-listing.handlebars')
 const showContent = require('../templates/content-listing.handlebars')
 const showPageTemplate = require('../templates/page-listing.handlebars')
-// const getFormFields = require(`../../../lib/get-form-fields`)
 
 const createContentSuccess = function (data) {
   $('#message').text('You have succesfully created content!')
   $('.post-list').empty()
   $('#view-posts').trigger('reset')
+  $('#create-content').trigger('reset')
 }
 
 const createContentFailure = function () {
@@ -17,6 +17,7 @@ const createContentFailure = function () {
 
 const getOneBlogSuccess = function (data) {
   const matchingEntries = data.contents.filter(content => content.type === 'post')
+
   if (matchingEntries.length === 0) {
     $('#message').text('This user does not have any blog posts')
   } else {
@@ -29,6 +30,7 @@ const getOneBlogSuccess = function (data) {
     $.each(matchingEntries, function (index, value) {
       value['date'] = value['date'].split('T')[0]
     })
+    $('form').trigger('reset')
     const showBlogsHtml = showBlogsTemplate({ contents: matchingEntries })
     $('.showblogs').empty()
     $('.showblogs').append(showBlogsHtml)
@@ -42,6 +44,7 @@ const getOneBlogFailure = function () {
 
 const populatePageList = function (data) {
   const matchingEntries = data.contents.filter(content => content.type === 'page')
+  
   if (matchingEntries.length === 0) {
     $('#message').text('This user does not have any web pages')
   } else {
@@ -61,6 +64,7 @@ const populatePageList = function (data) {
     })
 
     store.OwnersPages = matchingEntries
+    $('form').trigger('reset')
     $('#selectPage').removeClass('hidden')
     $('#selectPage').on('change', function () {
       const value = $(this).val()
@@ -270,7 +274,6 @@ module.exports = {
   updatePostFailure,
   deletePageFailure,
   deletePostFailure,
-  // getPageSuccess,
   getPageFailure,
   populatePageList
 }

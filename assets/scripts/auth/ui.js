@@ -46,11 +46,12 @@ const signOutSuccess = function (data) {
   $('#change-password').hide()
   $('#sign-out').hide()
   $('#accordion').hide()
-  // $('#blogcontent').hide()
   $('#sign-in').trigger('reset')
   $('#sign-up').trigger('reset')
-  // $('#blurb').show()
   $('#create-content').trigger('reset')
+  $('.showblogs').empty()
+  $('.showpage').empty()
+  $('form').trigger('reset')
 }
 
 const signOutFailure = function () {
