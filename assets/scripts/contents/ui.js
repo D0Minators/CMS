@@ -15,7 +15,10 @@ const createContentFailure = function () {
   $('#message').text('Error on creating content. Please Check All Fields Are Filled In.')
 }
 
+// Displays blog entries for one user/owner
 const getOneBlogSuccess = function (data) {
+  $('.showblogs').addClass('hidden')
+  $('.showblogs').empty()
   const matchingEntries = data.contents.filter(content => content.type === 'post')
 
   if (matchingEntries.length === 0) {
@@ -32,7 +35,8 @@ const getOneBlogSuccess = function (data) {
     })
     $('form').trigger('reset')
     const showBlogsHtml = showBlogsTemplate({ contents: matchingEntries })
-    $('.showblogs').empty()
+    $('.showpage').empty()
+    $('.showpage').addClass('hidden')
     $('.showblogs').append(showBlogsHtml)
     $('.showblogs').removeClass('hidden')
   }
@@ -42,7 +46,12 @@ const getOneBlogFailure = function () {
   $('#message').text('Failure on getting one user\'s blog content')
 }
 
+// populate drop down with list of available pages for user/owner
 const populatePageList = function (data) {
+  $('#selectPage').empty()
+  $('#selectPage').addClass('hidden')
+  $('.showpage').empty()
+  $('.showpage').addClass('hidden')
   const matchingEntries = data.contents.filter(content => content.type === 'page')
   
   if (matchingEntries.length === 0) {
@@ -57,7 +66,6 @@ const populatePageList = function (data) {
     $.each(matchingEntries, function (index, value) {
       value['date'] = value['date'].split('T')[0]
     })
-    $('#selectPage').empty()
     $('#selectPage').append($('<option value=0>Select a Page to View</option>'))
     $.each(matchingEntries, function (index, value) {
       $('#selectPage').append($('<option></option>').val(value._id).html(value.title))
@@ -78,6 +86,7 @@ const selectedPage = (matchingEntries, value) => {
   const showPageHtml = showPageTemplate({ contents: pickPage })
   $('.showpage').empty()
   $('.showblogs').empty()
+  $('.showblogs').addClass('hidden')
   $('.showpage').append(showPageHtml)
   $('.showpage').removeClass('hidden')
 }
