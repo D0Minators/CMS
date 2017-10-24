@@ -3,7 +3,6 @@ const api = require('./api')
 const showBlogsTemplate = require('../templates/blog-listing.handlebars')
 const showContent = require('../templates/content-listing.handlebars')
 const showPageTemplate = require('../templates/page-listing.handlebars')
-// const getFormFields = require(`../../../lib/get-form-fields`)
 
 const createContentSuccess = function (data) {
   $('#message').text('You have succesfully created content!')
@@ -27,7 +26,6 @@ const getOneBlogSuccess = function (data) {
     value['date'] = value['date'].split('T')[0]
   })
   $('form').trigger('reset')
-  // $('#message').text('Success getting one user\'s blog content')
   const showBlogsHtml = showBlogsTemplate({ contents: matchingEntries })
   $('.showblogs').empty()
   $('.showblogs').append(showBlogsHtml)
@@ -47,9 +45,7 @@ const populatePageList = function (data) {
   })
   $.each(matchingEntries, function (index, value) {
     value['date'] = value['date'].split('T')[0]
-    console.log(matchingEntries)
   })
-  // $('#message').text('Success getting one user\'s web pages')
   $('#selectPage').empty()
   $('#selectPage').append($('<option value=0>Select a Page to View</option>'))
   $.each(matchingEntries, function (index, value) {
@@ -92,9 +88,6 @@ const getPostsSuccess = function (data) {
   const matchingPosts = data.contents.filter(content => content.type === 'post')
   const showContentHTML = showContent({ contents: matchingPosts })
   $('.post-list').append(showContentHTML)
-  // if (data.contents.length === 0) {
-  //   $('#message').text('You Have Not Created Any Content Yet. Please Add Something first!')
-  // }
   $('.delete-content').on('click', function (event) {
     event.preventDefault()
     $(this).parent().parent().remove()
@@ -154,9 +147,6 @@ const getPagesSuccess = function (data) {
   const matchingPages = data.contents.filter(content => content.type === 'page')
   const showContentHTML = showContent({ contents: matchingPages })
   $('.page-list').append(showContentHTML)
-  // if (data.contents.length === 0) {
-  //   $('#message').text('You Have Not Created Any Content Yet. Please Add Something first!')
-  // }
   $('.delete-content').on('click', function (event) {
     event.preventDefault()
     $(this).parent().parent().remove()
@@ -261,7 +251,6 @@ module.exports = {
   updatePostFailure,
   deletePageFailure,
   deletePostFailure,
-  // getPageSuccess,
   getPageFailure,
   populatePageList
 }

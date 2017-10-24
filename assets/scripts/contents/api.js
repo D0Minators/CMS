@@ -51,7 +51,6 @@ const getAllContent = function () {
 }
 
 const getOneBlog = function (email) {
-  console.log(email)
   $('#message').text(`Success getting ${email}'s Blogs`)
   return $.ajax({
     url: config.apiOrigin + '/find-by-email/' + email,
@@ -60,7 +59,6 @@ const getOneBlog = function (email) {
 }
 
 const getOnePage = function (email) {
-  console.log(email)
   $('#message').text(`Success getting ${email}'s web pages`)
   return $.ajax({
     url: config.apiOrigin + '/find-by-email/' + email,
