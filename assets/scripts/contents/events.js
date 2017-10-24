@@ -1,6 +1,4 @@
 const getFormFields = require(`../../../lib/get-form-fields`)
-const store = require('../store')
-// const showContent = require('../templates/content-listing.handlebars')
 const api = require('./api')
 const ui = require('./ui')
 
@@ -39,7 +37,7 @@ const onChangeCreateContentMessage = function (event) {
 const onGetPageList = function (event) {
   event.preventDefault()
   const email = getFormFields(this).email
-  api.getOneBlog(email)
+  api.getOnePage(email)
     .then(ui.populatePageList)
     .catch(ui.getPageFailure)
 }

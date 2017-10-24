@@ -34,7 +34,6 @@ const updateContent = function (data, id) {
 }
 
 const deleteContent = function (id) {
-  console.log(id)
   return $.ajax({
     url: config.apiOrigin + '/contents/' + id,
     method: 'DELETE',
@@ -52,17 +51,26 @@ const getAllContent = function () {
 }
 
 const getOneBlog = function (email) {
+  $('#message').text(`Success getting ${email}'s Blogs`)
   return $.ajax({
     url: config.apiOrigin + '/find-by-email/' + email,
     method: 'GET'
   })
 }
 
+const getOnePage = function (email) {
+  $('#message').text(`Success getting ${email}'s web pages`)
+  return $.ajax({
+    url: config.apiOrigin + '/find-by-email/' + email,
+    method: 'GET'
+  })
+}
 module.exports = {
   createContent,
   getContent,
   updateContent,
   deleteContent,
   getAllContent,
-  getOneBlog
+  getOneBlog,
+  getOnePage
 }
