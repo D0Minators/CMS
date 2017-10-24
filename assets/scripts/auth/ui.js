@@ -49,8 +49,8 @@ const signOutSuccess = function (data) {
   $('#sign-in').trigger('reset')
   $('#sign-up').trigger('reset')
   $('#create-content').trigger('reset')
-  $('.showblogs').empty()
-  $('.showpage').empty()
+  $('.showblogs').hide()
+  $('.showpage').hide()
   $('form').trigger('reset')
 }
 
