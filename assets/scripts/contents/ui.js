@@ -113,7 +113,9 @@ const getPostsSuccess = function (data) {
 
 const onEditPost = function (event) {
   event.preventDefault()
-  $('.save-content').show()
+  // show only the save-content button for that particular element
+  const saveButtonLi = $(this).parent().siblings()[5]
+  $(saveButtonLi).children().show()
   $('.edit-content').hide()
   const id = $(this).parent().parent().data('id')
   const title = $(this).parent().siblings()[0]
@@ -148,6 +150,7 @@ const onSavePost = function (id, title, date, text, type) {
   text.remove()
   api.updateContent(data, id)
     .then(updatePostSuccess)
+    .then($('.edit-content').show())
     .catch(updatePostFailure)
 }
 
@@ -177,7 +180,8 @@ const getPagesSuccess = function (data) {
 
 const onEditPage = function (event) {
   event.preventDefault()
-  $('.save-content').show()
+  const saveButtonLi = $(this).parent().siblings()[5]
+  $(saveButtonLi).children().show()
   $('.edit-content').hide()
   const id = $(this).parent().parent().data('id')
   const title = $(this).parent().siblings()[0]
@@ -211,6 +215,7 @@ const onSavePage = function (id, title, date, text, type) {
   text.remove()
   api.updateContent(data, id)
     .then(updatePageSuccess)
+    .then($('.edit-content').show())
     .catch(updatePageFailure)
 }
 
