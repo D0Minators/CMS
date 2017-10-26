@@ -53,7 +53,6 @@ const populatePageList = function (data) {
   $('.showpage').empty()
   $('.showpage').addClass('hidden')
   const matchingEntries = data.contents.filter(content => content.type === 'page')
-  
   if (matchingEntries.length === 0) {
     $('#message').text('This user does not have any web pages')
   } else {
@@ -87,6 +86,7 @@ const selectedPage = (matchingEntries, value) => {
   $('.showpage').empty()
   $('.showblogs').empty()
   $('.showblogs').addClass('hidden')
+  $('#selectPage').addClass('hidden')
   $('.showpage').append(showPageHtml)
   $('.showpage').removeClass('hidden')
 }
