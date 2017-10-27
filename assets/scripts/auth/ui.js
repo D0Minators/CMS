@@ -45,7 +45,16 @@ const signOutSuccess = function (data) {
   $('#sign-in').show()
   $('#change-password').hide()
   $('#sign-out').hide()
+  // collapse accordions on sign-out
+  $('#view-pages').addClass('collapsed')
+  $('#view-posts').addClass('collapsed')
+  $('#collapseOne').removeClass('in')
+  $('#collapseTwo').removeClass('in')
+  $('#collapseThree').removeClass('in')
   $('#accordion').hide()
+  // clear out users pages and posts
+  $('.post-list').empty()
+  $('.page-list').empty()
   $('#sign-in').trigger('reset')
   $('#sign-up').trigger('reset')
   $('#create-content').trigger('reset')
