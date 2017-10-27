@@ -46,6 +46,8 @@ const signOutSuccess = function (data) {
   $('#change-password').hide()
   $('#sign-out').hide()
   // collapse accordions on sign-out
+  $('#view-pages').addClass('collapsed')
+  $('#view-posts').addClass('collapsed')
   $('#collapseOne').removeClass('in')
   $('#collapseTwo').removeClass('in')
   $('#collapseThree').removeClass('in')

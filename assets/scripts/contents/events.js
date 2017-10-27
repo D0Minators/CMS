@@ -12,7 +12,7 @@ const onCreateContent = function (event) {
 
 const onGetPostContent = function (event) {
   // only fetch data when accordion is going to expand
-  if ($(event.target).attr('aria-expanded') === 'false') {
+  if ($(event.target).attr('class') === 'collapsed') {
     api.getContent()
       .then(ui.getPostsSuccess)
       .catch(ui.getPostsFailure)
@@ -21,7 +21,7 @@ const onGetPostContent = function (event) {
 
 const onGetPageContent = function (event) {
   // only fetch data when accordion is going to expand
-  if ($(event.target).attr('aria-expanded') === 'false') {
+  if ($(event.target).attr('class') === 'collapsed') {
     api.getContent()
       .then(ui.getPagesSuccess)
       .catch(ui.getPagesFailure)
