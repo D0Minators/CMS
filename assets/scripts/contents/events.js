@@ -11,15 +11,21 @@ const onCreateContent = function (event) {
 }
 
 const onGetPostContent = function (event) {
-  api.getContent()
-    .then(ui.getPostsSuccess)
-    .catch(ui.getPostsFailure)
+  // only fetch data when accordion is going to expand
+  if ($(event.target).attr('aria-expanded') === 'false') {
+    api.getContent()
+      .then(ui.getPostsSuccess)
+      .catch(ui.getPostsFailure)
+  }
 }
 
 const onGetPageContent = function (event) {
-  api.getContent()
-    .then(ui.getPagesSuccess)
-    .catch(ui.getPagesFailure)
+  // only fetch data when accordion is going to expand
+  if ($(event.target).attr('aria-expanded') === 'false') {
+    api.getContent()
+      .then(ui.getPagesSuccess)
+      .catch(ui.getPagesFailure)
+  }
 }
 
 const onViewOneBlog = function (event) {
