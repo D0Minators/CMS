@@ -104,26 +104,31 @@ const getContentFailure = function () {
 }
 
 const getPostsSuccess = function (data) {
-  $('#message').text('Here Is Your List Of Posts:')
   $('.post-list').empty()
   const matchingPosts = data.contents.filter(content => content.type === 'post')
-  $.each(matchingPosts, function (index, value) {
-    value['date'] = value['date'].split('T')[0]
-  })
-  const showContentHTML = showContent({ contents: matchingPosts })
+  if (matchingPosts.length === 0) {
+    $('#message').text('You have no blog posts! Why not make some?')
+  } else {
+    $('#message').text('Here Is Your List Of Posts:')
+    $.each(matchingPosts, function (index, value) {
+      value['date'] = value['date'].split('T')[0]
+    })
+    const showContentHTML = showContent({
+      contents: matchingPosts
+    })
 
-  $('.post-list').append(showContentHTML)
-  $('.delete-content').on('click', function (event) {
-    event.preventDefault()
-    $(this).parent().parent().remove()
-    const id = $(this).parent().parent().data('id')
-    api.deleteContent(id)
-      .then(deletePostSuccess)
-      .catch(deletePostFailure)
-  })
-  $('.edit-content').on('click', onEditPost)
+    $('.post-list').append(showContentHTML)
+    $('.delete-content').on('click', function (event) {
+      event.preventDefault()
+      $(this).parent().parent().remove()
+      const id = $(this).parent().parent().data('id')
+      api.deleteContent(id)
+        .then(deletePostSuccess)
+        .catch(deletePostFailure)
+    })
+    $('.edit-content').on('click', onEditPost)
+  }
 }
-
 const onEditPost = function (event) {
   event.preventDefault()
   // show only the save-content button for that particular element
@@ -172,23 +177,29 @@ const getPostsFailure = function () {
 }
 
 const getPagesSuccess = function (data) {
-  $('#message').text('Here Is Your List Of Pages:')
   $('.page-list').empty()
   const matchingPages = data.contents.filter(content => content.type === 'page')
-  $.each(matchingPages, function (index, value) {
-    value['date'] = value['date'].split('T')[0]
-  })
-  const showContentHTML = showContent({ contents: matchingPages })
-  $('.page-list').append(showContentHTML)
-  $('.delete-content').on('click', function (event) {
-    event.preventDefault()
-    $(this).parent().parent().remove()
-    const id = $(this).parent().parent().data('id')
-    api.deleteContent(id)
-      .then(deletePageSuccess)
-      .catch(deletePageFailure)
-  })
-  $('.edit-content').on('click', onEditPage)
+  if (matchingPages.length === 0) {
+    $('#message').text('You have no pages! Why not make some?')
+  } else {
+    $('#message').text('Here Is Your List Of Pages:')
+    $.each(matchingPages, function (index, value) {
+      value['date'] = value['date'].split('T')[0]
+    })
+    const showContentHTML = showContent({
+      contents: matchingPages
+    })
+    $('.page-list').append(showContentHTML)
+    $('.delete-content').on('click', function (event) {
+      event.preventDefault()
+      $(this).parent().parent().remove()
+      const id = $(this).parent().parent().data('id')
+      api.deleteContent(id)
+        .then(deletePageSuccess)
+        .catch(deletePageFailure)
+    })
+    $('.edit-content').on('click', onEditPage)
+  }
 }
 
 const onEditPage = function (event) {
