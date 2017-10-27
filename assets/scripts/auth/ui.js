@@ -46,6 +46,9 @@ const signOutSuccess = function (data) {
   $('#change-password').hide()
   $('#sign-out').hide()
   $('#accordion').hide()
+  // clear out users pages and posts
+  $('.post-list').empty()
+  $('.page-list').empty()
   $('#sign-in').trigger('reset')
   $('#sign-up').trigger('reset')
   $('#create-content').trigger('reset')
