@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html>
+    <head>
+      <title>sserpdroW CMS</title>
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+
+      <!-- Do not add `link` tags-->
+      <link rel="shortcut icon" type="image/x-icon" href="https://richartiststarvingartist.com/wp-content/uploads/2016/12/wordpress-1810632_1280-1024x1015.jpg">
+      <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Vollkorn" rel="stylesheet">
+
+      <!-- Do not add `script` tags-->
+      <script src="public/vendor.js" type="text/javascript" charset="utf-8" defer></script>
+      <script src="public/application.js" type="text/javascript" charset="utf-8" defer></script>
+      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    </head>
+    <body class="container-fluid">
+      <h1><b>sserpdroW</b></h1>
+<div id="blurb">
+  <h2><b>A Powerful publishing platform<b></h2><br>
+  <p>Students, parents. Poets, photographers. Scientists, activists. <br>Millions of bloggers tell their stories on sserpdrow.com.<br></p>
+</div>
+      <div class="message" id='message'></div>
+      <!-- AUTH FUNCTIONS-->
+        <div class="form-group">
+          <form id="sign-up">
+            <fieldset>
+              <h3>Create An Account:</h3>
+              <input type="text" name="credentials[email]" class="textbox" placeholder="USERNAME">
+              <input type="password" name="credentials[password]" class="textbox" placeholder="PASSWORD">
+              <input type="password" name="credentials[password_confirmation]" class="textbox" placeholder="PASSWORD">
+              <input type="submit" name="submit" value="Sign Up" class="btn btn-primary btn-xs">
+            </fieldset>
+          </form>
+          <br>
+          <form id="sign-in">
+            <fieldset>
+              <h3>Login:</h3>
+              <input type="text" name="credentials[email]" class="textbox" placeholder="USERNAME">
+              <input type="password" name="credentials[password]" class="textbox" placeholder="PASSWORD">
+              <input type="submit" name="submit" value="Sign In" class="btn btn-primary btn-xs">
+            </fieldset>
+          </form>
+          <form id="change-password">
+            <fieldset>
+              <h3>Change Your Password:</h3>
+              <input type="password" name="passwords[old]" class="password_textbox" placeholder="OLD PW">
+              <input type="password" name="passwords[new]" class="password_textbox" placeholder="NEW PW"><br>
+              <input type="submit" name="submit" value="Change Password" class="btn btn-primary btn-xs">
+            </fieldset>
+          </form>
+          <br>
+          <form id="sign-out">
+            <fieldset>
+              <input type="submit" name="submit" value="Sign Out" class="btn btn-primary btn-s">
+            </fieldset>
+          </form>
+        </div>
+        <!-- END OF AUTH FUNCTIONS -->
+        <!-- About Button For Our Project -->
+        <!-- Button trigger modal -->
+<button type="button" class="btn btn-primary about-us" data-toggle="modal" data-target="#aboutus">
+  About Us
+</button>
+
+<!-- Modal -->
+<div class="modal fade" id="aboutus" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Create your blog and share your voice</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+      <h5>Start publishing in seconds. <br>
+        Instantly create the personal or professional blog of your dreams to share your ideas on the web.
+        <br><br>Whether you’re a blogger or a website owner, we know you have many places where you can pitch your online tent. If you’re a current user, thanks for choosing us — we love having you around. If you’re looking to build your online presence and haven’t decided where to drop anchor, give us a try. We’d love to become your home on the web.
+
+</h5>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+        <!-- End Of Button -->
+        <!-- Content -->
+<div id="accordion" role="tablist" aria-multiselectable="true">
+  <div class="card">
+    <div class="card-header" role="tab" id="headingOne">
+      <h3 class="mb-0">
+        <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+          Create Content
+        </a>
+      </h3>
+    </div>
+
+    <div id="collapseOne" class="collapse" role="tabpanel" aria-labelledby="headingOne">
+      <div class="card-block">
+        <h3>Start Telling Your Story Here:</h3><br>
+        <form id="create-content">
+        <fieldset>
+        <input type="text" class="textboxclass" name="content[title]" placeholder="title">
+        <input type="date" class="textboxclass2" name="content[date]" placeholder="date"><br>
+        <input type="text" class="textboxclass3" name="content[text]" placeholder="text"><br>
+        <select name="content[type]" class="textboxclass2">
+                <option value="page" name="content[page]">New Page</option>
+                <option value="post" name="content[post]">New Blog Post</option>
+        </select>
+        <br>
+        <input type="submit" name="submit" value="Add Content" class="btn btn-primary">
+        </fieldset>
+        </form>
+      </div>
+    </div>
+  </div>
+  <div class="card">
+    <div class="card-header" role="tab" id="headingTwo">
+      <h3 class="mb-0">
+        <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo" id="view-posts">
+          View Posts
+        </a>
+      </h3>
+    </div>
+    <div id="collapseTwo" class="collapse" role="tabpanel" aria-labelledby="headingTwo">
+      <div class="card-block">
+        <div class="post-list">
+
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="card">
+    <div class="card-header" role="tab" id="headingThree">
+      <h3 class="mb-0">
+        <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="false" aria-controls="collapseThree" id="view-pages">
+          View Pages
+        </a>
+      </h3>
+    </div>
+    <div id="collapseThree" class="collapse" role="tabpanel" aria-labelledby="headingThree">
+      <div class="card-block">
+        <div class="page-list">
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+        <!-- End Of Collapse -->
+        <!-- End Of Create Content FUnctions -->
+        <div class="row line-row">
+              <div class="hr">&nbsp;</div>
+            </div>
+        <h3>Want To Read A Friend's Content?</h3>
+        <br>
+        <div id="blogcontent">
+          <div class="Blogs">
+            <form class="get-blogs">
+                <input type="text" name="email" placeholder="Enter Username">
+                <input type="submit" name="get blogs" value="Get Blog" class="btn btn-primary">
+            </form>
+          </div>
+          <br><br>
+          <div class="showblogs hidden">
+          </div>
+      </div>
+      <div id="pagecontent">
+        <div class="pages">
+          <form class="get-page-list">
+              <input type="text" name="email" placeholder="Enter Username">
+              <input type="submit" name="get-page-list" value="Get Page List" class="btn btn-primary">
+          </form>
+          <select class="hidden" name="selectPage" id="selectPage"></select>
+        </div>
+        <br><br>
+        <div class="showpage hidden">
+        </div>
+    </div>
+        <!-- Footer Wrap -->
+        <div id="footerwrap">
+             <div class="container">
+              <div class="col-lg-12">
+                <b>Created by Team <a href="https://github.com/D0Minators/CMS">D0Minators</a></b>
+              </div>
+              <!-- <div class="col-lg-4">
+
+              </div>
+              <div class="col-lg-4">
+              </div> -->
+            </div>
+          </div>
+        <!-- End Of Wrap -->
+    </body>
+</html>
